@@ -14,4 +14,4 @@ To build a web-based tool that allows users engage in activities permitted for r
 ## Our Site:
 Our website will allow registered users to engage in online discussions and unregistered users to view discussions similar to forums such as [Reddit](https://www.reddit.com/) and [HackerNews](https://news.ycombinator.com/). The goal is to produce a similar type service that allows users to register, post content and make comments on items.   Additionally, unregistered users will be able to search and view the content but will not be able to edit or comment on posts. Registered users will be able to leave comments and replies.
 
-*Majority of the project information and requirements were taken from these provided sources: [Project Info](https://canvas.ubc.ca/courses/133337/pages/project-info?module_item_id=6511100) and [Canvas Page](https://canvas.ubc.ca/courses/133337)*
+<sub>*Majority of the project information and requirements were taken from these provided sources: [Project Info](https://canvas.ubc.ca/courses/133337/pages/project-info?module_item_id=6511100) and [Canvas Page](https://canvas.ubc.ca/courses/133337)*</sub>
