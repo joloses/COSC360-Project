@@ -46,7 +46,9 @@ nav {
     border-radius: 15px;
     background-color: white;
     color: darkslategray;
-    margin: 20px;
+    float: left;
+    width: 70%;
+    margin-left: 30px;
 }
 
 .main-content {
@@ -78,12 +80,19 @@ nav {
   }
 
 /* Second column */
-.secondary-content {
-    flex: 1; /* Takes up the remaining space */
-    border-left: 1px solid lightgrey;
+
+.container-2 {
+    display: flex;
     float: right;
+    border-radius: 15px;
+    background-color: white;
+    color: darkslategray;
+    margin-right: 40px;
+    width: 20%;
+}
+
+.secondary-content {
     padding: 20px;
-    margin-left: 10px;
     font-size: 12px;
 }
 
