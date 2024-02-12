@@ -1,4 +1,4 @@
-# [Site Name Here]
+# MyDiscussionForum
 ### COSC 360: Web Programing 
 Team: **Adam Delfs ; Isabella Mendoza ; Jolo Sesbreno**\
 Professor: **Ifeoma Adaji**
