@@ -1,6 +1,6 @@
 .container {
-    max-width: 800px;
-    margin: auto;
+    max-width: 500px; 
+    margin: 20px auto;
     padding: 20px;
     background-color: #fff;
     border-radius: 15px;
@@ -22,8 +22,8 @@ label {
 }
 
 input[type="text"],
-input[type="email"],
-textarea {
+input[type="password"],
+input[type="email"] {
     width: 100%;
     padding: 10px;
     border-radius: 5px;
@@ -32,12 +32,8 @@ textarea {
     font-size: 16px;
 }
 
-textarea {
-    resize: vertical;
-}
-
 button[type="submit"] {
-    background-color: #333;
+    background-color: #007bff;
     color: #fff;
     padding: 10px 20px;
     border: none;
@@ -47,9 +43,8 @@ button[type="submit"] {
 }
 
 button[type="submit"]:hover {
-    background-color: #6e6e6e;
+    background-color: #0056b3;
 }
-
 
 header {
     background-color: #333;
@@ -61,7 +56,7 @@ header {
 }
 
 .exit-btn {
-    background-color: #777272;
+    background-color: #cc0000;
     color: #fff;
     border: none;
     padding: 10px 20px;
@@ -70,5 +65,11 @@ header {
 }
 
 .exit-btn:hover {
-    background-color: #6e6e6e;
+    background-color: #ff0000;
+}
+
+.register-link {
+    display: block;
+    text-align: center;
+    margin-top: 20px;
 }

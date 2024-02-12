@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="css/login-register.css"> 
+    <link rel="stylesheet" href="css/home.css"> 
+    <link rel="stylesheet" href="css/profile.css"> 
+    
+</head>
+<body>
+    <header>
+        <a href="home.html" class="logo"><img src="images/logo.png"></a>
+        <button class="exit-btn" onclick="exitLogin()">Exit</button>
+    </header>
+    <h1>Login</h1>
+
+    <div class="container">
+        
+        <form onsubmit="return validateLoginForm()">
+            <div class="form-group">
+                <label for="login-email">Email:</label>
+                <input type="email" id="login-email" name="login-email" required>
+            </div>
+            <div class="form-group">
+                <label for="login-password">Password:</label>
+                <input type="password" id="login-password" name="login-password" required>
+            </div>
+            <button type="submit">Login</button>
+        </form>
+        <a href="register.html" class="register-link">Don't have an account? Register here</a>
+    </div>
+
+    <script>
+        function validateLoginForm() {
+            var email = document.getElementById("login-email").value;
+            var password = document.getElementById("login-password").value;
+            var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+            if (email == "") {
+                alert("Email address must be filled out");
+                return false;
+            }
+
+            if (!emailRegex.test(email)) {
+                alert("Please enter a valid email address");
+                return false;
+            }
+
+            if (password == "") {
+                alert("Password must be filled out");
+                return false;
+            }
+
+            return true;
+        }
+
+        function exitLogin() {
+            window.location.href = "home.html";
+        }
+    </script>
+</body>
+</html>

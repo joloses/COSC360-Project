@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    
+    <link rel="stylesheet" href="css/login-register.css"> 
+    <link rel="stylesheet" href="css/home.css"> 
+    <link rel="stylesheet" href="css/profile.css"> 
+</head>
+<body>
+    <header>
+        <a href="home.html" class="logo"><img src="images/logo.png"></a>
+        <button class="exit-btn" onclick="exitRegister()">Exit</button>
+    </header>
+    <h1>Register</h1>
+    <div class="container">
+        
+        <form onsubmit="return validateRegisterForm(event)">
+            <div class="form-group">
+                <label for="register-email">Email:</label>
+                <input type="email" id="register-email" name="register-email" required>
+            </div>
+            <div class="form-group">
+                <label for="register-password">Password:</label>
+                <input type="password" id="register-password" name="register-password" required>
+            </div>
+            <div class="form-group">
+                <label for="confirm-password">Confirm Password:</label>
+                <input type="password" id="confirm-password" name="confirm-password" required>
+            </div>
+            <button type="submit">Register</button>
+        </form>
+    </div>
+
+    <script>
+        function validateRegisterForm() {
+            var email = document.getElementById("register-email").value;
+            var password = document.getElementById("register-password").value;
+            var confirmPassword = document.getElementById("confirm-password").value;
+            var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+            if (email == "") {
+                alert("Email address must be filled out");
+                event.preventDefault();
+                return false;
+            }
+
+            if (!emailRegex.test(email)) {
+                alert("Please enter a valid email address");
+                event.preventDefault();
+                return false;
+            }
+
+            if (password == "") {
+                alert("Password must be filled out");
+                event.preventDefault();
+                return false;
+            }
+
+            if (password.length < 6) {
+                alert("Password must be at least 6 characters long");
+                event.preventDefault();
+                return false;
+            }
+
+            if (confirmPassword == "") {
+                alert("Please confirm your password");
+                event.preventDefault();
+                return false;
+            }
+
+            if (password !== confirmPassword) {
+                alert("Passwords do not match");
+                event.preventDefault();
+                return false;
+            }
+
+            return true;
+        }
+
+        function exitRegister() {
+            window.location.href = "home.html";
+        }
+    </script>
+</body>
+</html>
