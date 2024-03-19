@@ -1,6 +1,6 @@
 body {
     margin: 0px;
-    background-color: rgb(197, 196, 196);
+    background-color: #C1C8D8;
     font-family: Arial, sans-serif;
 }
 
@@ -72,7 +72,7 @@ nav {
 
 .post a {
     text-decoration: none;
-    color: darkslategray; 
+    color: #868D9F; 
 }
 
 .post a:hover {
@@ -86,7 +86,7 @@ nav {
     float: right;
     border-radius: 15px;
     background-color: white;
-    color: darkslategray;
+    color: #868D9F;
     margin-right: 40px;
     width: 20%;
 }
