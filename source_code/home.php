@@ -21,19 +21,16 @@
             <h3>Posts</h3>
             <hr>
             <div class="post">
-                <h2><a href="post.php">Post Title</a></h2>
+                <h2><a href="postPage.php">Post Title</a></h2>
                 <p><small><?php echo date("Y-m-d"); ?></small></p>
-            </div>
-          
+            </div>    
         </div>
     </div>
     
     <div class="container-2">
         <div class="secondary-content"> 
             <ul> 
-                <li><a href="topic1.php">Topic 1</a></li>
-                <li><a href="topic2.php">Topic 2</a></li>
-                <li><a href="topic3.php">Topic 3</a></li>
+                <li><a href="searchResult.php">Topic 1</a></li>
             </ul>
             <h4>Resources</h4>
             <ul> 
