@@ -1,31 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
-<style>
-        body {
-            font-family: Arial, sans-serif;
-        }
-        .container {
-            margin: 50px auto;
-            width: 600px;
-            padding: 20px;
-            background-color: #f9f9f9;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        .form-group {
-            margin-bottom: 20px;
-        }
-        
-        
-    </style>
 <head>
     <title>Create Post</title>
     <link rel="stylesheet" href="css/home.css">
+    <link rel="stylesheet" href="css/create-post.css">
 </head>
 <body> 
     <header>
         <nav> 
-            <a href="home.html" class="logo"><img src="images/logo.png"></a>
+            <a href="home.php" class="logo"><img src="images/logo.png"></a>
             <input type="text" class="search-bar" placeholder="Search...">
             <a href="create-post.php" class="create-post-btn"><img src="images/createPost.png"></a>
             <a href="user-profile.php" class="user-profile-btn"><img src="images/profile-icon.png"></a>
