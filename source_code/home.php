@@ -18,6 +18,7 @@
     <div class="container">
         <div class="main-content"> 
             <h3>Posts</h3>
+            
             <hr>
             <div class="post">
                 <h2><a href="postPage.php">Post Title</a></h2>
@@ -30,7 +31,12 @@
         <div class="secondary-content"> 
             <ul> 
                 <li><a href="searchResult.php">Topic 1</a></li>
+                <br>
+                <li><a href="searchResult.php">Topic 2</a></li>
+                <br>
+                <li><a href="searchResult.php">Topic 3</a></li>
             </ul>
+            <br>
             <h4>Resources</h4>
             <ul> 
                 <li><a href="about-us.php">About Us!</a></li>
