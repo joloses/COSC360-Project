@@ -1,29 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <style>
-        body {
-            font-family: Arial, sans-serif;
-        }
-        .container {
-            margin: 50px auto;
-            width: 600px;
-            padding: 20px;
-            background-color: #f9f9f9;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        .form-group {
-            margin-bottom: 20px;
-        }
-        
-        
+
     </style>
     
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register</title>
-    <link rel="stylesheet" href="css/home.css"> 
+    <link rel="stylesheet" href="css/header.css"> 
+    <link rel="stylesheet" href="css/login-register.css">
   
 </head>
 <body>
@@ -32,13 +18,12 @@
             <a href="home.php" class="logo"><img src="images/logo.png"></a>
             <input type="text" class="search-bar" placeholder="Search...">
             <a href="create-post.php" class="create-post-btn"><img src="images/createPost.png"></a>
-           
             <a href="user-profile.php" class="user-profile-btn"><img src="images/profile-icon.png"></a>
-            <a href="login-register.php" class="login-register-btn">Login/Register</a>
+            <a href="login.php" class="login-register-btn">Login/Register</a>
         </nav>
     </header>
-    <h1>Register</h1>
     <div class="container">
+        <h1>Register</h1>
         <form onsubmit="return validateForm()">
             <div class="form-group">
                 <label for="email">Email:</label>

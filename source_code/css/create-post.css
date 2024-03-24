@@ -2,7 +2,8 @@ body {
     font-family: Arial, sans-serif;
 }
 .container {
-    margin: 50px auto;
+    float: right;
+    margin: 0px auto;
     width: 600px;
     padding: 20px;
     background-color: #f9f9f9;

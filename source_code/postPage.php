@@ -11,7 +11,7 @@
             <a href="create-post.html" class="create-post-btn"><img src = "images/createPost.png"></a>
            
             <a href="user-profile.html" class="user-profile-btn"><img src = "images/profile-icon.png"></a>
-            <a href="login-register.html" class="login-register-btn">Login/Register</a>
+            <a href="login.html" class="login-register-btn">Login/Register</a>
         </nav>
 
         </nav>
