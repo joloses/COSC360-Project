@@ -28,6 +28,14 @@ CREATE TABLE `Post` (
     FOREIGN KEY (`userId`) REFERENCES `User`(`userId`)
 );
 
+CREATE TABLE `Comments` (
+    `commentId` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    `commentBody` VARCHAR(255) NOT NULL,
+    `postId` INT,
+    `userId` INT,
+    FOREIGN KEY(`postId`) REFERENCES `Post`(`postId`),
+    FOREIGN KEY(`userId`) REFERENCES `User`(`UserId`)
+);
 -- Dumping data for table `User`
 INSERT INTO `User` (`firstName`, `lastName`, `email`, `userPassword`) VALUES
 ('bobby', 'brown', 'bobby@gmail.com', '360bobby!');

@@ -19,7 +19,7 @@
     <div class="container">
         <div class="main-content"> 
             <h2>Create Post</h2>
-            <form action="post_process.php" method="post">
+            <form action="process-post.php" method="post">
                 <div class="form-group">
                     <label for="post-title">Title:</label>
                     <input type="text" id="post-title" name="post-title" required>
@@ -32,7 +32,8 @@
             </form>
         </div>
     </div>
-        
+
+    
     <div class="container-2">
         <div class="secondary-content"> 
             <h4>Your Posts</h4>
