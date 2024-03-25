@@ -2,16 +2,15 @@
 <html lang = en>
     <head>
         <title> Home </title>
-        <link rel="stylesheet" href="css/home.css">
+        <link rel="stylesheet" href="css/header.css">
     </head>
     <header>
-        <nav> <!-- Nav bar: Logo (home), search, create post, profile -->
+        <nav> 
             <a href="home.html" class="logo"><img src = "images/logo.png"></a>
             <input type="text" class="search-bar" placeholder="Search...">
             <a href="create-post.html" class="create-post-btn"><img src = "images/createPost.png"></a>
-           
             <a href="user-profile.html" class="user-profile-btn"><img src = "images/profile-icon.png"></a>
-            <a href="login-register.html" class="login-register-btn">Login/Register</a>
+            <a href="login.html" class="login-register-btn">Login/Register</a>
         </nav>
 
         </nav>

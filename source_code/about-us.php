@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Profile</title>
     <link rel="stylesheet" href="css/header.css"> 
-    <link rel="stylesheet" href="css/user-profile.css"> 
+    <link rel="stylesheet" href="css/info-page.css"> 
 </head>
 <body>
 <header>
