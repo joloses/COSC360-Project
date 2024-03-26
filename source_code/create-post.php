@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
     <title>Create Post</title>
-    <link rel="stylesheet" href="css/header.css">
-    <link rel="stylesheet" href="css/create-post.css">
+    <link rel="stylesheet" href="css/header.css?v=<?php echo time(); ?>">
+    <link rel="stylesheet" href="css/create-post.css?v=<?php echo time(); ?>">
 </head>
 <body> 
     <header>

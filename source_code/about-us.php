@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Profile</title>
-    <link rel="stylesheet" href="css/header.css"> 
-    <link rel="stylesheet" href="css/info-page.css"> 
+    <link rel="stylesheet" href="css/header.css?v=<?php echo time(); ?>">
+    <link rel="stylesheet" href="css/info-page.css?v=<?php echo time(); ?>">
 </head>
 <body>
 <header>
@@ -17,7 +17,6 @@
             <a href="login.php" class="login-register-btn">Login/Register</a>
         </nav>
     </header>
-
 
 </body>
 </html>

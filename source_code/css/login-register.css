@@ -22,8 +22,10 @@ body {
 }
 
 .form-group input[type="email"],
-.form-group input[type="password"] {
-    width: 100%;
+.form-group input[type="password"],
+.form-group input[type="text"]
+ {
+    width: 96.5%;
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;

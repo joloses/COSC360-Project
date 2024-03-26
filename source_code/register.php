@@ -1,20 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
-<style>
 
-    </style>
-    
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register</title>
-    <link rel="stylesheet" href="css/header.css"> 
-    <link rel="stylesheet" href="css/login-register.css">
-  
+    <link rel="stylesheet" href="css/header.css?v=<?php echo time(); ?>">
+    <link rel="stylesheet" href="css/login-register.css?v=<?php echo time(); ?>">
 </head>
+
 <body>
-<header>
-        <nav> 
+    <header>
+        <nav>
             <a href="home.php" class="logo"><img src="images/logo.png"></a>
             <input type="text" class="search-bar" placeholder="Search...">
             <a href="create-post.php" class="create-post-btn"><img src="images/createPost.png"></a>
@@ -28,6 +25,10 @@
             <div class="form-group">
                 <label for="email">Email:</label>
                 <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="username">Username:</label>
+                <input type="text" id="text" name="text" required>
             </div>
             <div class="form-group">
                 <label for="password">Password:</label>
@@ -93,4 +94,5 @@
         }
     </script>
 </body>
+
 </html>

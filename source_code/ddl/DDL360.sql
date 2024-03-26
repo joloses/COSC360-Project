@@ -7,7 +7,7 @@
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 5.6.30
 
---ADD TO XXAMP ~ lab9 instructions
+-- ADD TO XXAMP ~ lab9 instructions
 
 -- --------------------------------------------------------
 

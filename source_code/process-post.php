@@ -1,5 +1,3 @@
-<!DOCTYPE html>
-<html>
 <?php
     if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST["post-title"]) && isset($_POST["post-content"])) {
         $host = "localhost";
@@ -40,4 +38,3 @@
         die("Information is not complete!");
     }
 ?>
-</html>

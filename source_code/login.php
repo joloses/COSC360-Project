@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
     <title>Login/Register</title>
-    <link rel="stylesheet" href="css/header.css">
-    <link rel="stylesheet" href="css/login-register.css">
+    <link rel="stylesheet" href="css/header.css?v=<?php echo time(); ?>">
+    <link rel="stylesheet" href="css/login-register.css?v=<?php echo time(); ?>">
 
 </head>
 <body>

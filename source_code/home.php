@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <title>Home</title>
-    <link rel="stylesheet" href="css/home.css">
+    <link rel="stylesheet" href="css/home.css?v=<?php echo time(); ?>">
 </head>
 <body>
     <header>
@@ -58,6 +58,7 @@
     
     <div class="container-2">
         <div class="secondary-content"> 
+            <h4> Browse Our Topics!
             <ul> 
                 <li><a href="searchResult.php">Topic 1</a></li>
                 <br>
