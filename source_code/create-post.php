@@ -22,7 +22,7 @@
             <form action="process-post.php" method="post">
                 <div class="form-group">
                     <label for="post-title">Title:</label>
-                    <input type="text" id="post-title" name="post-title" required>
+                    <input type="text" id="post-title" name="post-title" maxlength="100" required>
                 </div>
                 <div class="form-group">
                     <label for="post-content">Content:</label>

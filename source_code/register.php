@@ -38,7 +38,9 @@
                 <label for="confirm-password">Confirm Password:</label>
                 <input type="password" id="confirm-password" name="confirm-password" required>
             </div>
+            <div class="form-group">
             <button type="submit">Register</button>
+            </div>
         </form>
     </div>
 

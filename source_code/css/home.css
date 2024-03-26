@@ -72,7 +72,7 @@ nav {
 
 .post a {
     text-decoration: none;
-    color: #868D9F; 
+    color: #555c6d; 
 }
 
 .post a:hover {
@@ -93,7 +93,7 @@ nav {
 
 .secondary-content {
     padding: 20px;
-    font-size: 12px;
+    font-size: 14px;
 }
 
 .secondary-content a {
