@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>View Post</title>
     <link rel="stylesheet" href="css/header.css?v=<?php echo time(); ?>">
+    <link rel="stylesheet" href="css/post-page.css?v=<?php echo time(); ?>">
 </head>
 <body>
     <header>
@@ -19,7 +20,6 @@
 
     <div class="container">
         <div class="main-content">
-            <hr>
             <?php
              $host = "localhost";
              $database = "ddl360";
@@ -69,18 +69,21 @@
     </div>
     
     <div class="container-2">
-        <div class="secondary-content">
-            <h4>Topics</h4>
+        <div class="secondary-content"> 
+            <h4> Browse Our Topics!
             <ul> 
-                <li><a href="topic1.html">Topic 1</a></li>
-                <li><a href="topic2.html">Topic 2</a></li>
-                <li><a href="topic3.html">Topic 3</a></li>
+                <li><a href="searchResult.php">Topic 1</a></li>
+                <br>
+                <li><a href="searchResult.php">Topic 2</a></li>
+                <br>
+                <li><a href="searchResult.php">Topic 3</a></li>
             </ul>
+            <br>
             <h4>Resources</h4>
             <ul> 
-                <li><a href="about-us.html">About Us!</a></li>
-                <li><a href="contact.html">Contact</a></li>
-                <li><a href="TOS.html">Terms of Service</a></li>
+                <li><a href="about-us.php">About Us!</a></li>
+                <li><a href="contact.php">Contact</a></li>
+                <li><a href="TOS.php">Terms of Service</a></li>
             </ul>
         </div>
     </div>
