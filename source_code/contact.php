@@ -18,5 +18,24 @@
         </nav>
     </header>
 
+    <div class="info-container">
+  <h2>Contact Us!</h2>
+  <form action="mailto:placeholder@example.com" method="post" enctype="text/plain">
+    <div class="form-group">
+      <label for="username">Username:</label>
+      <input type="text" id="username" name="username" placeholder="Enter your username" required>
+    </div>
+    <div class="form-group">
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" placeholder="Enter your email" required>
+    </div>
+    <div class="form-group">
+      <label for="message">Message:</label>
+      <textarea id="message" name="message" placeholder="Enter your message" required></textarea>
+    </div>
+    <button type="submit" class="submit-btn">Submit</button>
+  </form>
+</div>
+
 </body>
 </html>
