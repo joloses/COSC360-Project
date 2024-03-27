@@ -92,7 +92,7 @@
         }
 
         function exitRegister() {
-            window.location.href = "home.php";
+            window.location.href = "edit-profile.php";
         }
     </script>
 </body>

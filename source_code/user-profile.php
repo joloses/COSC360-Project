@@ -18,5 +18,12 @@
         </nav>
     </header>
 
+    <div class = "profile-container">
+        <div class = "profile-picture"> </div>
+        <div class = "profile-username"> Username: </div>
+        <div class = "profile-email"> Email: </div>
+        <div class = "profile-bio"> Bio: </div>
+        <a href="edit-profile.php" class="edit-profile-btn">Edit Profile</a>
+    </div>
 </body>
 </html>

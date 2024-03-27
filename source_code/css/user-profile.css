@@ -1,0 +1,53 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+.profile-container {
+    margin: 50px auto;
+    width: 600px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.profile-picture {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%; /* Circle pfp */
+    margin: 0 auto 20px;
+    background-color: #ccc;
+}
+
+.profile-username {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.profile-email {
+    font-size: 18px;
+    color: #666;
+    margin-bottom: 10px;
+}
+
+.profile-bio {
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+.edit-profile-btn {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    text-decoration: none;
+    
+}
+
+.edit-profile-btn:hover {
+    background-color: #0056b3;
+}

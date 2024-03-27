@@ -18,7 +18,6 @@
     <div class="container">
         <div class="main-content"> 
             <h3>Posts</h3>
-            
             <hr>
             <?php
             $host = "localhost";
