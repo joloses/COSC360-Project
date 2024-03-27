@@ -22,11 +22,11 @@
         <form onsubmit="return validateLoginForm()">
             <div class="form-group">
                 <label for="login-email">Email:</label>
-                <input type="email" id="login-email" name="login-email" required>
+                <input type="email" id="login-email" name="login-email" placeholder="Type Email here." required>
             </div>
             <div class="form-group">
                 <label for="login-password">Password:</label>
-                <input type="password" id="login-password" name="login-password" required>
+                <input type="password" id="login-password" name="login-password" placeholder="Type Password here." required>
             </div>
             <div class="form-group">
                 <button type="submit">Login</button>

@@ -24,19 +24,19 @@
         <form onsubmit="return validateForm()">
             <div class="form-group">
                 <label for="email">Email:</label>
-                <input type="email" id="email" name="email" required>
+                <input type="email" id="email" name="email" placeholder="Type Email here." required>
             </div>
             <div class="form-group">
                 <label for="username">Username:</label>
-                <input type="text" id="text" name="text" required>
+                <input type="text" id="text" name="text" placeholder="Type Username here."  required>
             </div>
             <div class="form-group">
                 <label for="password">Password:</label>
-                <input type="password" id="password" name="password" required>
+                <input type="password" id="password" name="password" placeholder="Type Password here." required>
             </div>
             <div class="form-group">
                 <label for="confirm-password">Confirm Password:</label>
-                <input type="password" id="confirm-password" name="confirm-password" required>
+                <input type="password" id="confirm-password" name="confirm-password" placeholder="Type Password here." required>
             </div>
             <div class="form-group">
             <button type="submit">Register</button>

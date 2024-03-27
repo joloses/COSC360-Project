@@ -22,11 +22,11 @@
             <form action="process-post.php" method="post">
                 <div class="form-group">
                     <label for="post-title">Title:</label>
-                    <input type="text" id="post-title" name="post-title" maxlength="100" required>
+                    <input type="text" id="post-title" name="post-title" maxlength="100" placeholder="Title... Keep it short!"required>
                 </div>
                 <div class="form-group">
                     <label for="post-content">Content:</label>
-                    <textarea id="post-content" name="post-content" rows="6" required></textarea>
+                    <textarea id="post-content" name="post-content" rows="6" placeholder="Text..."required></textarea>
                 </div>
                 <button type="submit">Post</button>
             </form>
