@@ -1,0 +1,1 @@
+<?php header("Location: source_code/home.php");?>
