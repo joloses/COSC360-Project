@@ -7,7 +7,7 @@
 </head>
 <body> 
     <header>
-    <nav> 
+        <nav> 
             <a href="home.php" class="logo"><img src="images/logo.png"></a>
             <input type="text" class="search-bar" placeholder="Search...">
             <a href="create-post.php" class="create-post-btn"><img src="images/createPost.png"></a>
@@ -25,15 +25,19 @@
     
     <div class="container">
         <div class="main-content"> 
-            <h2>Create Post</h2>
             <?php
-          
             if (!isset($_SESSION['email'])) {
-               
                 header("Location: login.php");
                 exit();
             }
+
+            $username = $_SESSION['username'];
             ?>
+            <div class="user-info">
+                <p>Welcome, <?php echo $username; ?></p>
+            </div>
+            
+            <h2>Create Post</h2>
             <form action="process-post.php" method="post">
                 <div class="form-group">
                     <label for="post-title">Title:</label>
@@ -42,6 +46,10 @@
                 <div class="form-group">
                     <label for="post-content">Content:</label>
                     <textarea id="post-content" name="post-content" rows="6" placeholder="Text..." required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="post-topic">Topic:</label>
+                    <input type="text" id="post-topic" name="post-topic" placeholder="Topic..." required>
                 </div>
                 <button type="submit">Post</button>
             </form>

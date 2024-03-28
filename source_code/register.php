@@ -6,10 +6,8 @@ $database = "DDL360";
 $user = "webuser";
 $password = "P@ssw0rd";
 
-// Establishing connection
 $connection = mysqli_connect($host, $user, $password, $database);
 
-// Check connection
 if (!$connection) {
     die("Connection failed: " . mysqli_connect_error());
 }
@@ -18,6 +16,7 @@ $errors = array();
 $firstNameValue = isset($_POST['first-name']) ? $_POST['first-name'] : '';
 $lastNameValue = isset($_POST['last-name']) ? $_POST['last-name'] : '';
 $emailValue = isset($_POST['register-email']) ? $_POST['register-email'] : '';
+$usernameValue = isset($_POST['username']) ? $_POST['username'] : '';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $firstName = $_POST['first-name'];
@@ -25,8 +24,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST['register-email'];
     $password = $_POST['register-password'];
     $confirmPassword = $_POST['confirm-password'];
+    $username = $_POST['username'];
 
-    // Validate password requirements
     $uppercase = preg_match('@[A-Z]@', $password);
     $number    = preg_match('@[0-9]@', $password);
     $symbol    = preg_match('@[^\w]@', $password);
@@ -39,20 +38,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $errors[] = "Passwords do not match.";
     }
 
-    // Check if email already exists
-    $sql = "SELECT * FROM User WHERE email='$email'";
+    $sql = "SELECT * FROM User WHERE email='$email' OR username='$username'";
     $result = $connection->query($sql);
     if ($result->num_rows > 0) {
-        $errors[] = "Email already registered. Please choose a different email.";
+        $errors[] = "Email or username already registered. Please choose a different email or username.";
     }
 
     if (empty($errors)) {
-        $sql = "INSERT INTO User (firstName, lastName, email, userPassword) VALUES ('$firstName', '$lastName', '$email', '$password')";
+        $sql = "INSERT INTO User (firstName, lastName, email, userPassword, username) VALUES ('$firstName', '$lastName', '$email', '$password', '$username')";
 
         if ($connection->query($sql) === TRUE) {
-            // Redirect to login page
             header("Location: login.php");
-            exit(); // Ensure script execution stops after redirection
+            exit(); 
         } else {
             echo "Error: " . $sql . "<br>" . $connection->error;
         }
@@ -83,15 +80,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <a href="user-profile.php" class="user-profile-btn"><img src="images/profile-icon.png"></a>
             
             <?php if(isset($_SESSION['email'])): ?>
-               
                 <a href="logout.php" class="logout-btn">Logout</a>
             <?php else: ?>
-                
                 <a href="login.php" class="login-register-btn">Login/Register</a>
             <?php endif; ?>
             
         </nav>
-       
     </header>
     
     <div class="container">
@@ -104,6 +98,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <div class="form-group">
                 <label for="last-name">Last Name:</label>
                 <input type="text" id="last-name" name="last-name" placeholder="Enter Last Name" required value="<?php echo $lastNameValue; ?>">
+            </div>
+            <div class="form-group">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" placeholder="Enter Username" required value="<?php echo $usernameValue; ?>">
             </div>
             <div class="form-group">
                 <label for="register-email">Email:</label>
@@ -135,6 +133,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </html>
 
 <?php
-// Close connection
 mysqli_close($connection);
 ?>

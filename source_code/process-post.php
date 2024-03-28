@@ -13,16 +13,16 @@
         $postTitle = $_POST["post-title"];
         $postContent = $_POST["post-content"];
         
-        // Prepare the SQL statement
+     
         $sql = $connection->prepare("INSERT INTO Post (`postTitle`, `postContent`) VALUES (?, ?)");
         if (!$sql) {
             die("Error in SQL query: " . $connection->error);
         }
 
-        // Bind parameters
+       
         $sql->bind_param("ss", $postTitle, $postContent);
 
-        // Execute the statement
+       
         if ($sql->execute()) {
             echo "Successfully added post!";
         } else {
@@ -30,7 +30,7 @@
             echo "<br><br><a href='/COSC360-Project/home.php'>Return to Home</a>";
         }
 
-        // Close statement and connection
+        
         $sql->close();
         mysqli_close($connection);
         die;

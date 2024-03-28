@@ -16,7 +16,8 @@ CREATE TABLE `User` (
     `firstName` VARCHAR(255) NOT NULL,
     `lastName` VARCHAR(255) NOT NULL,
     `email` VARCHAR(255) NOT NULL,
-    `userPassword` VARCHAR(255) NOT NULL
+    `userPassword` VARCHAR(255) NOT NULL,
+    `username` VARCHAR(50) NOT NULL
 );
 
 CREATE TABLE `Post` (

@@ -44,15 +44,15 @@ session_start();
                 die("Connection failed: " . mysqli_connect_error());
             }
 
-            // Query to retrieve all posts
+            
             $sql = "SELECT `postId`, `postTitle`, `postContent` FROM Post";
 
-            // Execute the query
+         
             $result = mysqli_query($connection, $sql);
 
-            // Check if there are posts
+           
             if (mysqli_num_rows($result) > 0) {
-                // Output data of each row
+                
                 while ($row = mysqli_fetch_assoc($result)) {
                     echo "<div class='post'>";
                     echo "<h2><a href='postPage.php?postId=" . $row['postId'] . "'>" . $row['postTitle'] . "</a></h2>";
@@ -63,7 +63,6 @@ session_start();
                 echo "No posts found.";
             }
 
-            // Close database connection
             mysqli_close($connection);
             ?>
         </div>

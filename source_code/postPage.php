@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -35,43 +39,43 @@
              $password = "P@ssw0rd";
              $connection = mysqli_connect($host, $user, $password, $database);
 
-            // Check connection
+        
             if (!$connection) {
                 die("Connection failed: " . mysqli_connect_error());
             }
 
             $postId = $_GET['postId'];
-            // Query to retrieve the post
+          
             $sql = "SELECT * FROM Post WHERE postId = $postId";
 
-            // Execute the query
+           
             $result = mysqli_query($connection, $sql);
 
-            // Check if the query was successful
+            
             if ($result) {
-                // Check if any rows were returned
+                
                 if (mysqli_num_rows($result) > 0) {
-                    // Fetch the post data
+                    
                     $row = mysqli_fetch_assoc($result);
-                    // Display the post content
+                 
                     echo "<h2>" . $row["postTitle"] . "</h2>";
                     echo "<p>" . $row["postContent"] . "</p>";
                 } else {
                     echo "No post found";
                 }
             } else {
-                // Handle query execution error
+                
                 echo "Error executing query: " . mysqli_error($connection);
             }
 
-            // Close the database connection
+           
             mysqli_close($connection);
 
             ?>
             <hr>
             <div class="comments">
                 <h3>Comments</h3>
-                <!-- List comments here -->
+                
             </div>
         </div>
     </div>

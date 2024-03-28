@@ -1,9 +1,9 @@
 <?php
 session_start();
 
-// Check if user is not logged in
+
 if (!isset($_SESSION['email'])) {
-    // Redirect to login page
+  
     header("Location: login.php");
     exit();
 }
@@ -11,7 +11,7 @@ if (!isset($_SESSION['email'])) {
 
 $username = $_SESSION['username']; 
 $email = $_SESSION['email']; 
-$bio = $_SESSION['bio']; 
+
 ?>
 
 <!DOCTYPE html>
@@ -44,7 +44,7 @@ $bio = $_SESSION['bio'];
     <div class="profile-picture"> </div>
     <div class="profile-username"> Username: <?php echo $username; ?></div>
     <div class="profile-email"> Email: <?php echo $email; ?></div>
-    <div class="profile-bio"> Bio: <?php echo $bio; ?></div>
+   
     <a href="edit-profile.php" class="edit-profile-btn">Edit Profile</a>
 </div>
 </body>
