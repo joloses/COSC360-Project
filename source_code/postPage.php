@@ -12,9 +12,17 @@
         <nav> 
             <a href="home.php" class="logo"><img src="images/logo.png"></a>
             <input type="text" class="search-bar" placeholder="Search...">
-            <a href="create-post.html" class="create-post-btn"><img src="images/createPost.png"></a>
-            <a href="user-profile.html" class="user-profile-btn"><img src="images/profile-icon.png"></a>
-            <a href="login.html" class="login-register-btn">Login/Register</a>
+            <a href="create-post.php" class="create-post-btn"><img src="images/createPost.png"></a>
+            <a href="user-profile.php" class="user-profile-btn"><img src="images/profile-icon.png"></a>
+            
+            <?php if(isset($_SESSION['email'])): ?>
+               
+                <a href="logout.php" class="logout-btn">Logout</a>
+            <?php else: ?>
+                
+                <a href="login.php" class="login-register-btn">Login/Register</a>
+            <?php endif; ?>
+            
         </nav>
     </header>
 
