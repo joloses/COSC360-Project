@@ -1,3 +1,11 @@
+<?php
+session_start();
+
+$username = $_SESSION['username'];
+$email = $_SESSION['email'];
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -27,11 +35,6 @@
     <div class="container">
         <div class="main-content">
             <?php
-            if (!isset($_SESSION['email'])) {
-                header("Location: login.php");
-                exit();
-            }
-
             $username = $_SESSION['username'];
             ?>
             <div class="user-info">

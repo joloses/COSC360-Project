@@ -1,3 +1,11 @@
+<?php
+session_start();
+
+$username = $_SESSION['username'];
+$email = $_SESSION['email'];
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -33,11 +41,11 @@
         </div>
         <form action="#" method="post" enctype="multipart/form-data">
             <input type="file" class="input-field" name="profile_picture" accept="image/*">
-            <input type="text" class="input-field" name="username" placeholder="Username" required>
-            <input type="email" class="input-field" name="email" placeholder="Email" required>
+            <input type="text" class="input-field" name="username" placeholder="Username" >
+            <input type="email" class="input-field" name="email" placeholder="Email" >
             <textarea class="input-field" name="bio" placeholder="Tell us something about yourself..."></textarea>
             <hr>
-            <input type="password" class="input-field" name="current_password" placeholder="Current Password" required>
+            <input type="password" class="input-field" name="current_password" placeholder="Current Password">
             <input type="password" class="input-field" name="new_password" placeholder="New Password">
             <input type="password" class="input-field" name="confirm_password" placeholder="Confirm New Password">
             <button type="submit" class="edit-profile-btn">Save Changes</button>

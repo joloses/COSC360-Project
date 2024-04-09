@@ -12,21 +12,19 @@ session_start();
 
 <body>
     <header>
-        <header>
-            <nav>
-                <a href="home.php" class="logo"><img src="images/logo.png"></a>
-                <input type="text" class="search-bar" placeholder="Search...">
+        <nav>
+            <a href="home.php" class="logo"><img src="images/logo.png"></a>
+            <input type="text" class="search-bar" placeholder="Search...">
 
-                <?php if (isset($_SESSION['email'])): ?>
-                    <a href="create-post.php" class="create-post-btn"><img src="images/createPost.png"></a>
-                    <a href="user-profile.php" class="user-profile-btn"><img src="images/profile-icon.png"></a>
-                    <a href="logout.php" class="logout-btn">Logout</a>
-                <?php else: ?>
-                    <a href="login.php" class="login-register-btn">Login/Register</a>
-                <?php endif; ?>
+            <?php if (isset($_SESSION['email'])): ?>
+                <a href="create-post.php" class="create-post-btn"><img src="images/createPost.png"></a>
+                <a href="user-profile.php" class="user-profile-btn"><img src="images/profile-icon.png"></a>
+                <a href="logout.php" class="logout-btn">Logout</a>
+            <?php else: ?>
+                <a href="login.php" class="login-register-btn">Login/Register</a>
+            <?php endif; ?>
 
-            </nav>
-        </header>
+        </nav>
     </header>
 
     <div class="container">
