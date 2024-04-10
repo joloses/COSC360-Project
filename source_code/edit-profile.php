@@ -1,6 +1,10 @@
 <?php
 session_start();
 
+if (empty($_SESSION["email"])) { // If user hard-codes link into URL
+    header("Location: login.php");
+}
+
 $username = $_SESSION['username'];
 $email = $_SESSION['email'];
 
