@@ -1,5 +1,6 @@
 <?php
 session_start();
+require_once 'connectDB.php';
 ?>
 
 <!DOCTYPE html>
@@ -33,24 +34,12 @@ session_start();
     <div class="container">
         <div class="main-content">
             <?php
-            $host = "localhost";
-            $database = "ddl360";
-            $user = "webuser";
-            $password = "P@ssw0rd";
-            $connection = mysqli_connect($host, $user, $password, $database);
-
-
-            if (!$connection) {
-                die("Connection failed: " . mysqli_connect_error());
-            }
 
             $postId = $_GET['postId'];
 
             $sql = "SELECT * FROM Post WHERE postId = $postId";
 
-
             $result = mysqli_query($connection, $sql);
-
 
             if ($result) {
 
@@ -67,7 +56,6 @@ session_start();
 
                 echo "Error executing query: " . mysqli_error($connection);
             }
-
 
             mysqli_close($connection);
 

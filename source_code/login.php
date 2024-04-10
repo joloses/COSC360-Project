@@ -1,16 +1,6 @@
 <?php
 session_start();
-
-$host = "localhost";
-$database = "DDL360";
-$user = "webuser";
-$password = "P@ssw0rd";
-
-$connection = mysqli_connect($host, $user, $password, $database);
-
-if (!$connection) {
-    die("Connection failed: " . mysqli_connect_error());
-}
+require_once 'connectDB.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST['login-email'];

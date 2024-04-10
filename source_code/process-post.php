@@ -1,14 +1,6 @@
 <?php
     if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST["post-title"]) && isset($_POST["post-content"])) {
-        $host = "localhost";
-        $database = "ddl360";
-        $user = "webuser";
-        $password = "P@ssw0rd";
-
-        $connection = mysqli_connect($host, $user, $password, $database);
-        if (!$connection) {
-            die("Connection failed: " . mysqli_connect_error());
-        }
+        require_once 'connectDB.php';
 
         $postTitle = $_POST["post-title"];
         $postContent = $_POST["post-content"];
