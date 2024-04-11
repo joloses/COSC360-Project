@@ -1,6 +1,15 @@
 <?php
 session_start();
 require_once 'connectDB.php';
+
+// Fetch topics
+$sql_topics = "SELECT DISTINCT `topic` FROM Post";
+$result_topics = mysqli_query($connection, $sql_topics);
+
+if (!$result_topics) {
+    echo "Error: " . mysqli_error($connection);
+    exit();
+}
 ?>
 
 <!DOCTYPE html>
@@ -33,14 +42,16 @@ require_once 'connectDB.php';
             <h3>Posts</h3>
             <hr>
             <?php
+            $sql_posts = "SELECT `postId`, `postTitle`, `postContent` FROM Post";
+            $result_posts = mysqli_query($connection, $sql_posts);
 
-            $sql = "SELECT `postId`, `postTitle`, `postContent` FROM Post";
+            if (!$result_posts) {
+                echo "Error: " . mysqli_error($connection);
+                exit();
+            }
 
-            $result = mysqli_query($connection, $sql);
-
-            if (mysqli_num_rows($result) > 0) {
-
-                while ($row = mysqli_fetch_assoc($result)) {
+            if (mysqli_num_rows($result_posts) > 0) {
+                while ($row = mysqli_fetch_assoc($result_posts)) {
                     echo "<div class='post'>";
                     echo "<h2><a href='postPage.php?postId=" . $row['postId'] . "'>" . $row['postTitle'] . "</a></h2>";
                     echo "<p><small>" . date("Y-m-d") . "</small></p>";
@@ -49,29 +60,31 @@ require_once 'connectDB.php';
             } else {
                 echo "No posts found.";
             }
-
-            mysqli_close($connection);
             ?>
         </div>
     </div>
 
     <div class="container-2">
         <div class="secondary-content">
-            <h4> Browse Our Topics!
-                <ul>
-                    <li><a href="searchResult.php">Topic 1</a></li>
-                    <br>
-                    <li><a href="searchResult.php">Topic 2</a></li>
-                    <br>
-                    <li><a href="searchResult.php">Topic 3</a></li>
-                </ul>
-                <br>
-                <h4>Resources</h4>
-                <ul>
-                    <li><a href="about-us.php">About Us!</a></li>
-                    <li><a href="contact.php">Contact</a></li>
-                    <li><a href="TOS.php">Terms of Service</a></li>
-                </ul>
+            <h4>Topics</h4>
+            <ul>
+                <?php
+                if (mysqli_num_rows($result_topics) > 0) {
+                    while ($row = mysqli_fetch_assoc($result_topics)) {
+                        echo "<li id=topicList><a href='searchResult.php?topic=" . $row['topic'] . "'>" . $row['topic'] . "</a></li>";
+                    }
+                } else {
+                    echo "No topics found.";
+                }
+                ?>
+            </ul>
+            <br>
+            <h4>Resources</h4>
+            <ul>
+                <li class="other"><a href="about-us.php">About Us!</a></li>
+                <li class="other"><a href="contact.php">Contact</a></li>
+                <li class="other"><a href="TOS.php">Terms of Service</a></li>
+            </ul>
         </div>
     </div>
 </body>

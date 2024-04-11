@@ -40,6 +40,8 @@ CREATE TABLE `Comments` (
 -- Dumping data for table `User`
 INSERT INTO `User` (`firstName`, `lastName`, `email`, `userPassword`) VALUES
 ('bobby', 'brown', 'bobby@gmail.com', '360bobby!');
+INSERT INTO `User` (`firstName`, `lastName`, `email`, `userPassword`) VALUES
+('james', 'jackson', 'james@gmail.com', '360james!');
 
 -- Dumping data for table `Post`
 INSERT INTO `Post` (`postTitle`, `postContent`, `topic`, `userId`) VALUES

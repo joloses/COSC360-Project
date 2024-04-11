@@ -1,28 +1,26 @@
 <?php
-    if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST["post-title"]) && isset($_POST["post-content"])) {
+    if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST["post-title"]) && isset($_POST["post-content"]) && isset($_POST["post-topic"])) {
         require_once 'connectDB.php';
 
         $postTitle = $_POST["post-title"];
         $postContent = $_POST["post-content"];
-        
-     
-        $sql = $connection->prepare("INSERT INTO Post (`postTitle`, `postContent`) VALUES (?, ?)");
+        $postTopic = $_POST["post-topic"];
+
+        $sql = $connection->prepare("INSERT INTO Post (`postTitle`, `topic`, `postContent`) VALUES (?, ?, ?)");
         if (!$sql) {
             die("Error in SQL query: " . $connection->error);
         }
+    
+        $sql->bind_param("sss", $postTitle, $postTitle, $postContent);
 
-       
-        $sql->bind_param("ss", $postTitle, $postContent);
-
-       
         if ($sql->execute()) {
             echo "Successfully added post!";
+            echo "<br><br><a href='/COSC360-Project/source_code/home.php'>Return to Home</a>";
         } else {
             echo "Unable to create post.";
-            echo "<br><br><a href='/COSC360-Project/home.php'>Return to Home</a>";
+            echo "<br><br><a href='/COSC360-Project/source_code/home.php'>Return to Home</a>";
         }
 
-        
         $sql->close();
         mysqli_close($connection);
         die;

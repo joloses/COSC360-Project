@@ -61,3 +61,24 @@
 .secondary-content a:hover {
     text-decoration: underline;
   }
+
+#topicLink {
+    text-decoration: none;
+    font-style: italic;
+    color: darkslategray;
+}
+
+#topicLink:hover {
+    color: rgb(16, 37, 37);
+}
+
+#topicList, .other {
+    text-decoration: none;
+    font-style: italic;
+    color: darkslategray;
+    list-style: none;
+}
+
+#topicList:hover {
+    color: rgb(16, 37, 37);
+}

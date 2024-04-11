@@ -1,6 +1,54 @@
 <?php
 session_start();
 require_once 'connectDB.php';
+
+// Check if postId is set in the URL
+if(isset($_GET['postId'])) {
+    $postId = $_GET['postId'];
+
+    // Fetch post details based on postId
+    $sql = "SELECT * FROM Post WHERE postId = $postId";
+    $result = mysqli_query($connection, $sql);
+
+    if ($result) {
+        if (mysqli_num_rows($result) > 0) {
+            $row = mysqli_fetch_assoc($result);
+            $postTitle = $row["postTitle"];
+            $topic = $row['topic'];
+            $postContent = $row["postContent"];
+        } else {
+            $postTitle = "No post found";
+            $topic = "";
+            $postContent = "";
+        }
+    } else {
+        $postTitle = "Error fetching post";
+        $topic = "";
+        $postContent = "Error executing query: " . mysqli_error($connection);
+    }
+    // Fetch topics
+    $sql_topics = "SELECT DISTINCT `topic` FROM Post";
+    $result_topics = mysqli_query($connection, $sql_topics);
+
+    // Fetch comments
+    $sql_comments = "SELECT * FROM Comments WHERE postId = $postId";
+    $result_comments = mysqli_query($connection, $sql_comments);
+
+    $comments = [];
+    if ($result_comments && mysqli_num_rows($result_comments) > 0) {
+        while ($row_comment = mysqli_fetch_assoc($result_comments)) {
+        $comments[] = $row_comment['commentBody'];
+        }
+    }
+
+} else {
+    $postTitle = "No postId specified";
+    $topic = "";
+    $postContent = "";
+    $comments = [];
+}
+
+
 ?>
 
 <!DOCTYPE html>
@@ -33,58 +81,46 @@ require_once 'connectDB.php';
 
     <div class="container">
         <div class="main-content">
-            <?php
-
-            $postId = $_GET['postId'];
-
-            $sql = "SELECT * FROM Post WHERE postId = $postId";
-
-            $result = mysqli_query($connection, $sql);
-
-            if ($result) {
-
-                if (mysqli_num_rows($result) > 0) {
-
-                    $row = mysqli_fetch_assoc($result);
-
-                    echo "<h2>" . $row["postTitle"] . "</h2>";
-                    echo "<p>" . $row["postContent"] . "</p>";
-                } else {
-                    echo "No post found";
-                }
-            } else {
-
-                echo "Error executing query: " . mysqli_error($connection);
-            }
-
-            mysqli_close($connection);
-
-            ?>
+            <h2><?php echo $postTitle; ?></h2>
+            <a id="topicLink" href='searchResult.php?topic=<?php echo $topic; ?>'><?php echo $topic; ?></a>
+            <p><?php echo $postContent; ?></p>
             <hr>
             <div class="comments">
                 <h3>Comments</h3>
-
+                    <?php if (!empty($comments)): ?>
+                        <ul>
+                            <?php foreach ($comments as $comment): ?>
+                                <li><?php echo $comment; ?></li>
+                            <?php endforeach; ?>
+                        </ul>
+                    <?php else: ?>
+                        <p>No comments yet.</p>
+                    <?php endif; ?>
             </div>
         </div>
     </div>
 
     <div class="container-2">
         <div class="secondary-content">
-            <h4> Browse Our Topics!
-                <ul>
-                    <li><a href="searchResult.php">Topic 1</a></li>
-                    <br>
-                    <li><a href="searchResult.php">Topic 2</a></li>
-                    <br>
-                    <li><a href="searchResult.php">Topic 3</a></li>
-                </ul>
-                <br>
-                <h4>Resources</h4>
-                <ul>
-                    <li><a href="about-us.php">About Us!</a></li>
-                    <li><a href="contact.php">Contact</a></li>
-                    <li><a href="TOS.php">Terms of Service</a></li>
-                </ul>
+            <h4>Topics</h4>
+            <ul>
+                <?php
+                if ($result_topics && mysqli_num_rows($result_topics) > 0) {
+                    while ($row = mysqli_fetch_assoc($result_topics)) {
+                        echo "<li id='topicList'><a href='searchResult.php?topic=" . $row['topic'] . "'>" . $row['topic'] . "</a></li>";
+                    }
+                } else {
+                    echo "<li>No topics found.</li>";
+                }
+                ?>
+            </ul>
+            <br>
+            <h4>Resources</h4>
+            <ul>
+                <li class="other"><a href="about-us.php">About Us!</a></li>
+                <li class="other"><a href="contact.php">Contact</a></li>
+                <li class="other"><a href="TOS.php">Terms of Service</a></li>
+            </ul>
         </div>
     </div>
 </body>

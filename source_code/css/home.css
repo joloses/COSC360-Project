@@ -94,6 +94,8 @@ nav {
 .secondary-content {
     padding: 20px;
     font-size: 14px;
+    list-style: none;
+
 }
 
 .secondary-content a {
@@ -104,3 +106,14 @@ nav {
 .secondary-content a:hover {
     text-decoration: underline;
   }
+
+#topicList, .other {
+    text-decoration: none;
+    font-style: italic;
+    color: darkslategray;
+    list-style: none;
+}
+
+#topicList:hover {
+    color: rgb(16, 37, 37);
+}
