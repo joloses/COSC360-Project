@@ -96,7 +96,7 @@ if(isset($_GET['search']) && !empty($_GET['search'])) {
     <div class="container">
         <div class="main-content">
             <h2><?php echo $postTitle; ?></h2>
-            <a id="topicLink" href='searchResult.php?topic=<?php echo $topic; ?>'><?php echo $topic; ?></a>
+            <a id="topicLink" href="home.php?search=<?php echo urlencode($topic); ?>"><?php echo $topic; ?></a>
             <p><?php echo $postContent; ?></p>
             <hr>
             <div class="comments">
