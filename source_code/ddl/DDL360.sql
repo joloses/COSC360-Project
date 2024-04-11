@@ -21,7 +21,8 @@ CREATE TABLE `User` (
     `lastName` VARCHAR(255) NOT NULL,
     `email` VARCHAR(255) NOT NULL,
     `userPassword` VARCHAR(255) NOT NULL,
-    `username` VARCHAR(50) NOT NULL
+    `username` VARCHAR(50) NOT NULL,
+    `role` ENUM('user', 'admin') NOT NULL DEFAULT 'user' -- Add 'role' column to specify user role
 );
 
 CREATE TABLE `Post` (
@@ -43,11 +44,9 @@ CREATE TABLE `Comments` (
     FOREIGN KEY(`userId`) REFERENCES `User`(`UserId`)
 );
 -- Dumping data for table `User`
-INSERT INTO `User` (`firstName`, `lastName`, `email`, `userPassword`) VALUES
-('bobby', 'brown', 'bobby@gmail.com', '360bobby!');
-INSERT INTO `User` (`firstName`, `lastName`, `email`, `userPassword`) VALUES
-('james', 'jackson', 'james@gmail.com', '360james!');
-
+INSERT INTO `User` (`firstName`, `lastName`, `email`, `userPassword`, `username`, `role`) VALUES
+('bobby', 'brown', 'bobby@gmail.com', '360bobby!', 'bobby', 'admin'), -- New user with admin privileges
+('james', 'jackson', 'james@gmail.com', '360james!', 'james', 'user'); -- Existing user
 -- Dumping data for table `Post`
 INSERT INTO `Post` (`postTitle`, `postContent`, `postDate`, `topic`, `userId`) VALUES
 ('Bobby''s First Post', 'Hi, I''m Bobby, here is my first post', '2022-04-10','Introductions', 1);

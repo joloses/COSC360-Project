@@ -2,7 +2,6 @@
 session_start();
 require_once 'connectDB.php';
 
-
 if (empty($_SESSION["email"])) { // If user hard-codes link into URL
     header("Location: login.php");
 }
@@ -10,9 +9,11 @@ if (empty($_SESSION["email"])) { // If user hard-codes link into URL
 $username = $_SESSION['username'];
 $email = $_SESSION['email'];
 
-$sql_user_posts = "SELECT postId, postName FROM Post WHERE username = '$username'";
+$sql_user_posts = "SELECT Post.postId, Post.postTitle 
+                   FROM Post 
+                   INNER JOIN User ON Post.userId = User.userId
+                   WHERE User.username = '$username'";
 $result_user_posts = mysqli_query($connection, $sql_user_posts);
-
 
 ?>
 
@@ -78,7 +79,7 @@ $result_user_posts = mysqli_query($connection, $sql_user_posts);
             if ($result_user_posts && mysqli_num_rows($result_user_posts) > 0) {
                 // Iterate through user's posts and display them
                 while ($row_user_post = mysqli_fetch_assoc($result_user_posts)) {
-                    echo "<li id='prevPosts'><a href='postPage.php?postId=" . $row['postId'] . "'>" . $row['postName'] . "</a></li>";
+                    echo "<li id='prevPosts'><a href='postPage.php?postId=" . $row_user_post['postId'] . "'>" . $row_user_post['postTitle'] . "</a></li>";
                 }
             } else {
                 echo "<p>No posts found.</p>";

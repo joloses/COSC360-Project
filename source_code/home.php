@@ -13,6 +13,14 @@ if (!$result_topics) {
 
 // Default query to fetch all posts
 $sql_posts = "SELECT `postId`, `postTitle`, `postContent`, `postDate`, `userId` FROM Post";
+
+// Check if a search query is provided
+if (isset($_GET['search']) && $_GET['search'] != "") {
+    // If search query is provided, show search results
+    $search = mysqli_real_escape_string($connection, $_GET['search']);
+    $sql_posts = "SELECT `postId`, `postTitle`, `postContent`, `postDate`, `userId` FROM Post WHERE `postTitle` LIKE '%$search%' OR  `topic` LIKE '%$search%'";
+}
+
 $result_posts = mysqli_query($connection, $sql_posts);
 
 if (!$result_posts) {
@@ -37,45 +45,35 @@ if (!$result_posts) {
                 <input type="text" class="search-bar" name="search" placeholder="Search..." value="<?php echo isset($_GET['search']) ? $_GET['search'] : '' ?>">
                 <button type="submit" class="submitBtn">Search</button>
             </form>
-
             <?php if (isset($_SESSION['email'])): ?>
+                <?php if ($_SESSION['role'] === 'admin'): ?>
+                    <a href="adminpage.php" class="admin-page-btn">Admin Page</a>
+                <?php endif; ?>
                 <a href="create-post.php" class="create-post-btn"><img src="images/createPost.png"></a>
                 <a href="user-profile.php" class="user-profile-btn"><img src="images/profile-icon.png"></a>
                 <a href="logout.php" class="logout-btn">Logout</a>
             <?php else: ?>
                 <a href="login.php" class="login-register-btn">Login/Register</a>
             <?php endif; ?>
-
         </nav>
     </header>
 
     <div class="container">
         <div class="main-content">
             <?php
-            if (isset($_GET['search']) && $_GET['search'] != "" ) {
-                // If search query is provided, show search results
-                $search = mysqli_real_escape_string($connection, $_GET['search']);
-                echo "<h3>Showing Posts Containing or In $search </h3>";
-                echo"<hr>";
-                $sql_search = "SELECT `postId`, `postTitle`, `postContent`, `postDate`,`userId` FROM Post WHERE `postTitle` LIKE '%$search%' OR  `topic` LIKE '%$search%' ";
-                $result_posts = mysqli_query($connection, $sql_search);
-
-                if (!$result_posts) {
-                    echo "Error fetching search results: " . mysqli_error($connection);
-                    exit();
-                }
-
+            if (isset($_GET['search']) && $_GET['search'] != "") {
                 if (mysqli_num_rows($result_posts) > 0) {
                     while ($row = mysqli_fetch_assoc($result_posts)) {
-                        // Fetch the poster's name based on userId
+                        $posterName = "Unknown";
                         $userId = $row['userId'];
-                        $sql_poster = "SELECT `firstName`, `lastName` FROM User WHERE userId = $userId";
-                        $result_poster = mysqli_query($connection, $sql_poster);
+                        $sql_poster = "SELECT `firstName`, `lastName` FROM User WHERE userId = ?";
+                        $stmt = mysqli_prepare($connection, $sql_poster);
+                        mysqli_stmt_bind_param($stmt, "i", $userId);
+                        mysqli_stmt_execute($stmt);
+                        $result_poster = mysqli_stmt_get_result($stmt);
                         if ($result_poster && mysqli_num_rows($result_poster) > 0) {
                             $row_poster = mysqli_fetch_assoc($result_poster);
                             $posterName = $row_poster['firstName'] . ' ' . $row_poster['lastName'];
-                        } else {
-                            $posterName = "Unknown";
                         }
 
                         echo "<div class='post'>";
@@ -93,18 +91,19 @@ if (!$result_posts) {
             } else {
                 // Show all posts by default
                 echo "<h3> All Posts </h3>";
-                echo"<hr>";
+                echo "<hr>";
                 if (mysqli_num_rows($result_posts) > 0) {
                     while ($row = mysqli_fetch_assoc($result_posts)) {
-                        // Get the poster's name based on post's userId
+                        $posterName = "Unknown";
                         $userId = $row['userId'];
-                        $sql_poster = "SELECT `firstName`, `lastName` FROM User WHERE userId = $userId";
-                        $result_poster = mysqli_query($connection, $sql_poster);
+                        $sql_poster = "SELECT `firstName`, `lastName` FROM User WHERE userId = ?";
+                        $stmt = mysqli_prepare($connection, $sql_poster);
+                        mysqli_stmt_bind_param($stmt, "i", $userId);
+                        mysqli_stmt_execute($stmt);
+                        $result_poster = mysqli_stmt_get_result($stmt);
                         if ($result_poster && mysqli_num_rows($result_poster) > 0) {
                             $row_poster = mysqli_fetch_assoc($result_poster);
                             $posterName = $row_poster['firstName'] . ' ' . $row_poster['lastName'];
-                        } else {
-                            $posterName = "Unknown";
                         }
 
                         echo "<div class='post'>";
