@@ -94,6 +94,10 @@ nav {
     text-decoration: underline;
   }
 
+.posterName {
+  padding: 0;
+}
+
 /* Second column */
 
 .container-2 {
@@ -132,3 +136,4 @@ nav {
 #topicList:hover {
     color: rgb(16, 37, 37);
 }
+
