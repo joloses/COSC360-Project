@@ -18,6 +18,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Set session variables
         $_SESSION['email'] = $email;
         $_SESSION['userId'] = $userId;
+        $_SESSION['username'] = $username;
 
         // Redirect to home page
         header("Location: home.php");
