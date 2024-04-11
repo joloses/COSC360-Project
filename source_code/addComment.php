@@ -49,6 +49,7 @@ if(isset($_GET['postId'])) {
             }
         }
     }    
+     
 
     // Get poster's name to display with post
     if ($userId) {
@@ -86,7 +87,7 @@ if(isset($_GET['search']) && !empty($_GET['search'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>View Post</title>
     <link rel="stylesheet" href="css/header.css?v=<?php echo time(); ?>">
-    <link rel="stylesheet" href="css/post-page.css?v=<?php echo time(); ?>">
+    <link rel="stylesheet" href="css/addComment.css?v=<?php echo time(); ?>">
 </head>
 <body>
     <header>
@@ -119,18 +120,23 @@ if(isset($_GET['search']) && !empty($_GET['search'])) {
             <hr>
             <div class="comments">
                 <h3>Comments</h3>
-                    <?php if (!empty($comments)): ?>
+                <?php if (!empty($comments)): ?>
                         <!-- Display each comment if any exist -->
                             <?php foreach ($comments as $comment): ?>
-                                
                                 <p class="commentList"><?php echo $comment; ?><p> <hr>
                             <?php endforeach; ?>
                     <?php else: ?>
                         <p>No comments yet.</p>
-                    <?php endif; ?>
-                    <?php if (isset($_SESSION['email'])): ?> <!-- If user is logged in, they can comment-->
-                        <a id="addCommentLink" href="addComment.php?postId=<?php echo $postId; ?>" class="commentBtn">Add Comment</a>
-                    <?php endif; ?>
+                    <?php endif; ?> <!-- If add comment is clicked, the box pops up-->
+                    <div class="commentBox">
+                        <form id="addCommentForm"action="processComment.php" method="POST">
+                            <input type="hidden" name="postId" value="<?php echo $postId; ?>">
+                            <input type="hidden" name="userId" value="<?php echo $userId; ?>">
+                            <label for="comment">Add Comment</label><br>
+                            <textarea id="comment" name="comment" rows="4" cols="50"></textarea><br>
+                            <button type="submit">Submit</button>
+                    </form>
+                    </div>
                 </div>
         </div>
     </div>

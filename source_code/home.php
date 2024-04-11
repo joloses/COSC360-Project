@@ -82,7 +82,7 @@ if (!$result_posts) {
                         echo "<h2><a href='postPage.php?postId=" . $row['postId'] . "'>" . $row['postTitle'] . "</a></h2>";
                         echo "<div style='display: flex; align-items: center;'>";
                         echo "<img src='images/profile-icon.png' width='15px' height='15px'>";
-                        echo "<p style='margin: 2px 3px 2px 3px;'>" . $posterName . "</p>"; // Reduced margin-left to 3px
+                        echo "<p style='margin: 2px 3px 2px 3px;'>" . $posterName . "</p>"; 
                         echo "</div>";
                         echo "<p><small>" . $row['postDate'] . "</small></p>";
                         echo "</div>";
@@ -113,7 +113,7 @@ if (!$result_posts) {
                         echo "<img src='images/profile-icon.png' width='15px' height='15px'>";
                         echo "<p style='margin-left: 5px;'>" . $posterName . "</p>";
                         echo "</div>";
-                        echo "<p><small>" . date("Y-m-d") . "</small></p>";
+                        echo "<p><small>" . $row['postDate'] . "</small></p>";
                         echo "</div>";
 
                     }
