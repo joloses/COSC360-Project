@@ -28,18 +28,8 @@
 }
 
 .post {
-    border-bottom: lightgray 1px solid;
+    color: #555c6d; 
 }
-
-.post a {
-    text-decoration: none;
-    color: #555c6d;
-}
-
-.post a:hover {
-    text-decoration: underline;
-}
-
 
 .submitBtn {
     background-color: #627594;
@@ -86,6 +76,37 @@
     background-color: #2f3d59;
 }
 
+#topicLink {
+    font-weight: bold;
+}
+
+#commentBreaks {
+    border-top: 0.1px solid rgb(207, 209, 212);
+}
+
+
+.commentList {
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+}
+
+.commentList::after {
+    content: '';
+    display: block;
+    clear: both;
+}
+
+.commentBody {
+    float: left;
+}
+
+.commentList hr {
+    border-top: 1px solid #ddd;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
 
 /* Second column */
 .container-2 {

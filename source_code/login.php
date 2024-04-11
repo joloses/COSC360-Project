@@ -14,9 +14,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $row = $result->fetch_assoc();
         $username = $row['username'];
         $role = $row['role'];
+        $userId = $row['userId'];
 
         // Set session variables
         $_SESSION['email'] = $email;
+        $_SESSION['userId'] = $userId;
         $_SESSION['username'] = $username;
         $_SESSION['role'] = $role;
 

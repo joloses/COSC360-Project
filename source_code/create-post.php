@@ -7,12 +7,10 @@ if (empty($_SESSION["email"])) { // If user hard-codes link into URL
 }
 
 $username = $_SESSION['username'];
+$userId = $_SESSION['userId'];
 $email = $_SESSION['email'];
 
-$sql_user_posts = "SELECT Post.postId, Post.postTitle 
-                   FROM Post 
-                   INNER JOIN User ON Post.userId = User.userId
-                   WHERE User.username = '$username'";
+$sql_user_posts = "SELECT postId, postTitle FROM Post WHERE userId = '$userId'";
 $result_user_posts = mysqli_query($connection, $sql_user_posts);
 
 ?>
@@ -49,10 +47,11 @@ $result_user_posts = mysqli_query($connection, $sql_user_posts);
             $username = $_SESSION['username'];
             ?>
             <div class="user-info">
-                <p>Welcome, <?php echo $username; ?></p>
+                <p>Welcome, <?php echo $username; ?></p> 
             </div>
 
             <h2>Create Post</h2>
+            <!-- Form to create a new post (attached to logged in user)-->
             <form action="process-post.php" method="post">
                 <div class="form-group">
                     <label for="post-title">Title:</label>
@@ -73,20 +72,26 @@ $result_user_posts = mysqli_query($connection, $sql_user_posts);
     </div>
 
     <div class="container-2">
-        <div class="secondary-content">
-            <h4>Your Previous Posts</h4>
-            <?php
+    <div class="secondary-content">
+        <h4>Your Previous Posts</h4>
+        <?php
             if ($result_user_posts && mysqli_num_rows($result_user_posts) > 0) {
-                // Iterate through user's posts and display them
+                // Iterate through user's posts and display them with a link
+                echo "<ul class='user-posts'>";
                 while ($row_user_post = mysqli_fetch_assoc($result_user_posts)) {
-                    echo "<li id='prevPosts'><a href='postPage.php?postId=" . $row_user_post['postId'] . "'>" . $row_user_post['postTitle'] . "</a></li>";
+                    echo "<li class='prev-post'><a href='postPage.php?postId=" . $row_user_post['postId'] . "'>" . $row_user_post['postTitle'] . "</a></li>";
                 }
+                echo "</ul>";
             } else {
-                echo "<p>No posts found.</p>";
+                // If no posts are found, display a message
+                echo "<p class='no-posts'>No posts found.</p>";
             }
-            ?>
-        </div>
+            
+        ?>
+
     </div>
+</div>
+
 
 
 </body>
