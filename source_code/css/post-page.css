@@ -9,12 +9,14 @@
 }
 
 .main-content {
-    flex: 2; /* Takes up 66% of the width */
+    flex: 2;
+    /* Takes up 66% of the width */
     padding: 0px 20px;
     padding-bottom: 20px;
-  }
+}
 
-.profile-btn { /* logo credit: https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.vecteezy.com%2Fvector-art%2F8302462-eps10-grey-vector-user-icon-or-logo-in-simple-flat-trendy-modern-style-isolated-on-white-background&psig=AOvVaw3pgjXonlxadLb9Pu4dLWz4&ust=1707728564459000&source=images&cd=vfe&opi=89978449&ved=0CBMQjRxqFwoTCIivzuX2ooQDFQAAAAAdAAAAABAE*/
+.profile-btn {
+    /* logo credit: https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.vecteezy.com%2Fvector-art%2F8302462-eps10-grey-vector-user-icon-or-logo-in-simple-flat-trendy-modern-style-isolated-on-white-background&psig=AOvVaw3pgjXonlxadLb9Pu4dLWz4&ust=1707728564459000&source=images&cd=vfe&opi=89978449&ved=0CBMQjRxqFwoTCIivzuX2ooQDFQAAAAAdAAAAABAE*/
     width: 20px;
     height: 20px;
     display: flex;
@@ -24,21 +26,14 @@
     width: 100%;
     height: 100%;
 }
-.post {
-    border-bottom: lightgray 1px solid;
-}
 
-.post a {
-    text-decoration: none;
+.post {
     color: #555c6d; 
 }
 
-.post a:hover {
-    text-decoration: underline;
-  }
 
-  
-.submitBtn, #addCommentLink {
+.submitBtn,
+#addCommentLink {
     background-color: #627594;
     padding: 4px 8px 4px 8px;
     text-decoration: none;
@@ -47,14 +42,44 @@
     margin: 5px;
     border-radius: 5px;
     box-shadow: none;
-  }
-  
-  .submitBtn:hover, #addCommentLink:hover  {
+}
+
+.submitBtn:hover,
+#addCommentLink:hover {
     background-color: #2f3d59;
-  }
+}
 
+#topicLink {
+    font-weight: bold;
+}
 
-  
+#commentBreaks {
+    border-top: 0.1px solid rgb(207, 209, 212);
+}
+
+.commentList {
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+}
+
+.commentList::after {
+    content: '';
+    display: block;
+    clear: both;
+}
+
+.commentBody {
+    float: left;
+}
+
+.commentList hr {
+    border-top: 1px solid #ddd;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
 /* Second column */
 
 .container-2 {
@@ -74,12 +99,12 @@
 
 .secondary-content a {
     text-decoration: none;
-    color: darkslategray; 
-  }
+    color: darkslategray;
+}
 
 .secondary-content a:hover {
     text-decoration: underline;
-  }
+}
 
 #topicLink {
     text-decoration: none;
@@ -91,7 +116,8 @@
     color: rgb(16, 37, 37);
 }
 
-#topicList, .other {
+#topicList,
+.other {
     text-decoration: none;
     font-style: italic;
     color: darkslategray;
