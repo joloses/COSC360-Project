@@ -49,10 +49,11 @@ $result_user_posts = mysqli_query($connection, $sql_user_posts);
             $username = $_SESSION['username'];
             ?>
             <div class="user-info">
-                <p>Welcome, <?php echo $username; ?></p>
+                <p>Welcome, <?php echo $username; ?></p> 
             </div>
 
             <h2>Create Post</h2>
+            <!-- Form to create a new post (attached to logged in user)-->
             <form action="process-post.php" method="post">
                 <div class="form-group">
                     <label for="post-title">Title:</label>

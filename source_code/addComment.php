@@ -1,3 +1,4 @@
+<!-- Identical to postPage.php with addition of a form to add a comment-->
 <?php
 session_start();
 require_once 'connectDB.php';
@@ -134,6 +135,16 @@ if(isset($_GET['search']) && !empty($_GET['search'])) {
             <hr>
             <div class="comments">
                 <h3>Comments</h3>
+                <!-- If add comment is clicked on postPage.php, the form pops up-->
+                <div class="commentBox">
+                        <form id="addCommentForm"action="processComment.php" method="POST">
+                            <input type="hidden" name="postId" value="<?php echo $postId; ?>">
+                            <input type="hidden" name="userId" value="<?php echo $userId; ?>">
+                            <label for="comment">Add Comment</label><br>
+                            <textarea id="comment" name="comment" rows="4" cols="50"></textarea><br>
+                            <button type="submit">Submit</button>
+                    </form>
+                    </div>
                 <?php if (!empty($comments)): ?>
                    <!-- Display each comment if any exist -->
                    <?php foreach ($comments as $comment): ?>
@@ -149,16 +160,6 @@ if(isset($_GET['search']) && !empty($_GET['search'])) {
                 <?php else: ?>
                     <p>No comments yet.</p>
                 <?php endif; ?>
-                    <!-- If add comment is clicked, the box pops up-->
-                    <div class="commentBox">
-                        <form id="addCommentForm"action="processComment.php" method="POST">
-                            <input type="hidden" name="postId" value="<?php echo $postId; ?>">
-                            <input type="hidden" name="userId" value="<?php echo $userId; ?>">
-                            <label for="comment">Add Comment</label><br>
-                            <textarea id="comment" name="comment" rows="4" cols="50"></textarea><br>
-                            <button type="submit">Submit</button>
-                    </form>
-                    </div>
                 </div>
         </div>
     </div>

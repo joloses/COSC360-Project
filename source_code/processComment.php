@@ -14,14 +14,17 @@ if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST["postId"]) && isset($_P
     $postId = $_POST["postId"];
     $postComment = $_POST["comment"];
 
+    //insert form inputs into comments
     $sql = $connection->prepare("INSERT INTO Comments (`commentBody`, `postId`, `userId`) VALUES (?, ?, ?)");
+
     if (!$sql) {
         die("Error in SQL query: " . $connection->error);
     }
 
     $sql->bind_param("sss", $postComment, $postId, $userId);
 
-    if ($sql->execute()) {
+    if ($sql->execute()) { 
+        //if successful, redirect to post page to see added comment
         header("Location: /COSC360-Project/source_code/postPage.php?postId=" . $postId);
         exit();
     } else {
