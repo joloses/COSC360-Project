@@ -13,9 +13,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Fetch the username from the query result
         $row = $result->fetch_assoc();
         $username = $row['username'];
+        $userId = $row['userId'];
 
         // Set session variables
         $_SESSION['email'] = $email;
+        $_SESSION['userId'] = $userId;
         $_SESSION['username'] = $username;
 
         // Redirect to home page

@@ -11,6 +11,10 @@
 
 -- --------------------------------------------------------
 
+DROP TABLE IF EXISTS Comments;
+DROP TABLE IF EXISTS Post;
+DROP TABLE IF EXISTS User;
+
 CREATE TABLE `User` (
     `userId` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     `firstName` VARCHAR(255) NOT NULL,
@@ -26,6 +30,7 @@ CREATE TABLE `Post` (
     `postId` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     `postTitle` VARCHAR(255) NOT NULL,
     `postContent` VARCHAR(255) NOT NULL,
+    `postDate` DATE NOT NULL,
     `topic` VARCHAR(255) NOT NULL,
     `userId` INT,
     FOREIGN KEY (`userId`) REFERENCES `User`(`userId`)
@@ -46,8 +51,11 @@ INSERT INTO `User` (`firstName`, `lastName`, `email`, `userPassword`, `username`
 ('james', 'jackson', 'james@gmail.com', '360james!', 'officialjames', '', '');
 
 -- Dumping data for table `Post`
-INSERT INTO `Post` (`postTitle`, `postContent`, `topic`, `userId`) VALUES
-('Bobby''s First Post', 'Hi, I''m Bobby, here is my first post', 'Introductions', 1);
+INSERT INTO `Post` (`postTitle`, `postContent`, `postDate`, `topic`, `userId`) VALUES
+('Bobby''s First Post', 'Hi, I''m Bobby, here is my first post', '2022-04-10','Introductions', 1);
+INSERT INTO `Post` (`postTitle`, `postContent`, `postDate`, `topic`, `userId`) VALUES
+('First time in Kelowna!', 'I''m James and I''m new to UBCO! Anyone have any suggestions for things to do in Kelowna?', '2024-09-2','Kelowna', 2);
+
 
 
 

@@ -5,13 +5,14 @@
         $postTitle = $_POST["post-title"];
         $postContent = $_POST["post-content"];
         $postTopic = $_POST["post-topic"];
+        $postDate = date("Y-m-d"); // Assuming you want to use the current date as the post date
 
-        $sql = $connection->prepare("INSERT INTO Post (`postTitle`, `topic`, `postContent`) VALUES (?, ?, ?)");
+        $sql = $connection->prepare("INSERT INTO Post (`postTitle`, `topic`, `postContent`, `postDate`) VALUES (?, ?, ?, ?)");
         if (!$sql) {
             die("Error in SQL query: " . $connection->error);
         }
     
-        $sql->bind_param("sss", $postTitle, $postTitle, $postContent);
+        $sql->bind_param("ssss", $postTitle, $postTitle, $postContent, $postDate);
 
         if ($sql->execute()) {
             echo "Successfully added post!";
