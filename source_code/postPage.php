@@ -48,6 +48,17 @@ if(isset($_GET['postId'])) {
     $comments = [];
 }
 
+// Check if search query is provided
+if(isset($_GET['search']) && !empty($_GET['search'])) {
+    $search = mysqli_real_escape_string($connection, $_GET['search']);
+    $sql_search = "SELECT `postId`, `postTitle`, `postContent` FROM Post WHERE `postTitle` LIKE '%$search%' OR `topic` LIKE '%$search%'";
+    $result_posts = mysqli_query($connection, $sql_search);
+} else {
+    // Default query to fetch all posts
+    $sql_posts = "SELECT `postId`, `postTitle`, `postContent` FROM Post";
+    $result_posts = mysqli_query($connection, $sql_posts);
+}
+
 
 ?>
 
@@ -66,7 +77,10 @@ if(isset($_GET['postId'])) {
     <header>
         <nav>
             <a href="home.php" class="logo"><img src="images/logo.png"></a>
-            <input type="text" class="search-bar" placeholder="Search...">
+            <form method="GET" action="home.php" class="search-form">
+                <input type="text" class="search-bar" name="search" placeholder="Search..." value="<?php echo isset($_GET['search']) ? $_GET['search'] : '' ?>">
+                <button type="submit" class="submitBtn">Search</button>
+            </form>
 
             <?php if (isset($_SESSION['email'])): ?>
                 <a href="create-post.php" class="create-post-btn"><img src="images/createPost.png"></a>
@@ -107,7 +121,7 @@ if(isset($_GET['postId'])) {
                 <?php
                 if ($result_topics && mysqli_num_rows($result_topics) > 0) {
                     while ($row = mysqli_fetch_assoc($result_topics)) {
-                        echo "<li id='topicList'><a href='searchResult.php?topic=" . $row['topic'] . "'>" . $row['topic'] . "</a></li>";
+                        echo "<li id='topicList'><a href='home.php?search=" . $row['topic'] . "'>" . $row['topic'] . "</a></li>";
                     }
                 } else {
                     echo "<li>No topics found.</li>";

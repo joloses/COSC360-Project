@@ -7,7 +7,16 @@ $sql_topics = "SELECT DISTINCT `topic` FROM Post";
 $result_topics = mysqli_query($connection, $sql_topics);
 
 if (!$result_topics) {
-    echo "Error: " . mysqli_error($connection);
+    echo "Error fetching topics: " . mysqli_error($connection);
+    exit();
+}
+
+// Default query to fetch all posts
+$sql_posts = "SELECT `postId`, `postTitle`, `postContent` FROM Post";
+$result_posts = mysqli_query($connection, $sql_posts);
+
+if (!$result_posts) {
+    echo "Error fetching posts: " . mysqli_error($connection);
     exit();
 }
 ?>
@@ -24,7 +33,10 @@ if (!$result_topics) {
     <header>
         <nav>
             <a href="home.php" class="logo"><img src="images/logo.png"></a>
-            <input type="text" class="search-bar" placeholder="Search...">
+            <form method="GET" action="" class="search-form">
+                <input type="text" class="search-bar" name="search" placeholder="Search..." value="<?php echo isset($_GET['search']) ? $_GET['search'] : '' ?>">
+                <button type="submit" class="submitBtn">Search</button>
+            </form>
 
             <?php if (isset($_SESSION['email'])): ?>
                 <a href="create-post.php" class="create-post-btn"><img src="images/createPost.png"></a>
@@ -39,26 +51,44 @@ if (!$result_topics) {
 
     <div class="container">
         <div class="main-content">
-            <h3>Posts</h3>
-            <hr>
             <?php
-            $sql_posts = "SELECT `postId`, `postTitle`, `postContent` FROM Post";
-            $result_posts = mysqli_query($connection, $sql_posts);
+            if (isset($_GET['search']) && $_GET['search'] != "" ) {
+                // If search query is provided, show search results
+                $search = mysqli_real_escape_string($connection, $_GET['search']);
+                echo "<h3>Showing Posts Containing or In $search </h3>";
+                echo"<hr>";
+                $sql_search = "SELECT `postId`, `postTitle`, `postContent` FROM Post WHERE `postTitle` LIKE '%$search%' OR  `topic` LIKE '%$search%' ";
+                $result_posts = mysqli_query($connection, $sql_search);
 
-            if (!$result_posts) {
-                echo "Error: " . mysqli_error($connection);
-                exit();
-            }
+                if (!$result_posts) {
+                    echo "Error fetching search results: " . mysqli_error($connection);
+                    exit();
+                }
 
-            if (mysqli_num_rows($result_posts) > 0) {
-                while ($row = mysqli_fetch_assoc($result_posts)) {
-                    echo "<div class='post'>";
-                    echo "<h2><a href='postPage.php?postId=" . $row['postId'] . "'>" . $row['postTitle'] . "</a></h2>";
-                    echo "<p><small>" . date("Y-m-d") . "</small></p>";
-                    echo "</div>";
+                if (mysqli_num_rows($result_posts) > 0) {
+                    while ($row = mysqli_fetch_assoc($result_posts)) {
+                        echo "<div class='post'>";
+                        echo "<h2><a href='postPage.php?postId=" . $row['postId'] . "'>" . $row['postTitle'] . "</a></h2>";
+                        echo "<p><small>" . date("Y-m-d") . "</small></p>";
+                        echo "</div>";
+                    }
+                } else {
+                    echo "No matching posts found.";
                 }
             } else {
-                echo "No posts found.";
+                // Show all posts by default
+                echo "<h3> All Posts </h3>";
+                echo"<hr>";
+                if (mysqli_num_rows($result_posts) > 0) {
+                    while ($row = mysqli_fetch_assoc($result_posts)) {
+                        echo "<div class='post'>";
+                        echo "<h2><a href='postPage.php?postId=" . $row['postId'] . "'>" . $row['postTitle'] . "</a></h2>";
+                        echo "<p><small>" . date("Y-m-d") . "</small></p>";
+                        echo "</div>";
+                    }
+                } else {
+                    echo "No posts found.";
+                }
             }
             ?>
         </div>
@@ -71,7 +101,7 @@ if (!$result_topics) {
                 <?php
                 if (mysqli_num_rows($result_topics) > 0) {
                     while ($row = mysqli_fetch_assoc($result_topics)) {
-                        echo "<li id=topicList><a href='searchResult.php?topic=" . $row['topic'] . "'>" . $row['topic'] . "</a></li>";
+                        echo "<li class='topicItem'><a href='javascript:void(0);' onclick='setSearch(\"" . $row['topic'] . "\")'>" . $row['topic'] . "</a></li>";
                     }
                 } else {
                     echo "No topics found.";
@@ -87,6 +117,13 @@ if (!$result_topics) {
             </ul>
         </div>
     </div>
+
+    <script>
+        function setSearch(topic) {
+            document.querySelector('.search-bar').value = topic;
+            document.querySelector('.search-form').submit();
+        }
+    </script>
 </body>
 
 </html>

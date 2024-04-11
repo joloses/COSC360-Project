@@ -38,6 +38,21 @@ nav {
     display: flex;
 }
 
+.submitBtn {
+  background-color: #627594;
+  padding: 4px 8px 4px 8px;
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+  margin: 5px;
+  border-radius: 5px;
+  box-shadow: none;
+}
+
+.submitBtn:hover  {
+  background-color: #2f3d59;
+}
+
 /* -----------------------------------------------------------------------------------------*/
 /* Body */
 
