@@ -1,5 +1,6 @@
 <?php
 session_start();
+require_once 'connectDB.php';
 
 if (empty($_SESSION["email"])) { // If user hard-codes link into URL
     header("Location: login.php");
@@ -8,6 +9,15 @@ if (empty($_SESSION["email"])) { // If user hard-codes link into URL
 $username = $_SESSION['username'];
 $email = $_SESSION['email'];
 
+$query = "SELECT * FROM User WHERE email = '$email'";
+$result = mysqli_query($connection, $query);
+$row = mysqli_fetch_assoc($result);
+$bio = $row['bio'];
+$profile_picture = $row['pfp'];
+
+// If empty, show nothing (prevent undefined error)
+$bio = $row['bio'] ?? '';
+$profile_picture = $row['pfp'] ?? '';
 ?>
 
 <!DOCTYPE html>
@@ -39,11 +49,13 @@ $email = $_SESSION['email'];
     </header>
 
     <div class="profile-container">
-        <div class="profile-picture"> </div>
+        <div class="profile-picture"><img src="<?php echo $profile_picture; ?>"></div>
         <div class="profile-username"> Username: <?php echo $username; ?></div>
         <div class="profile-email"> Email: <?php echo $email; ?></div>
+        <div class="profile-bio"> <strong> Bio: </strong> <?php echo $bio; ?> </div>
 
         <a href="edit-profile.php" class="edit-profile-btn">Edit Profile</a>
+        <a href="change-password.php" class="change-pass-btn">Change Password</a>
     </div>
 </body>
 

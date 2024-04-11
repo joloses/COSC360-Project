@@ -17,7 +17,9 @@ CREATE TABLE `User` (
     `lastName` VARCHAR(255) NOT NULL,
     `email` VARCHAR(255) NOT NULL,
     `userPassword` VARCHAR(255) NOT NULL,
-    `username` VARCHAR(50) NOT NULL
+    `username` VARCHAR(50) NOT NULL,
+    `bio` VARCHAR(255),
+    `pfp` blob NOT NULL
 );
 
 CREATE TABLE `Post` (
@@ -38,10 +40,10 @@ CREATE TABLE `Comments` (
     FOREIGN KEY(`userId`) REFERENCES `User`(`UserId`)
 );
 -- Dumping data for table `User`
-INSERT INTO `User` (`firstName`, `lastName`, `email`, `userPassword`) VALUES
-('bobby', 'brown', 'bobby@gmail.com', '360bobby!');
-INSERT INTO `User` (`firstName`, `lastName`, `email`, `userPassword`) VALUES
-('james', 'jackson', 'james@gmail.com', '360james!');
+INSERT INTO `User` (`firstName`, `lastName`, `email`, `userPassword`, `username`, `bio`, `pfp`) VALUES
+('bobby', 'brown', 'bobby@gmail.com', '360bobby!', 'bobby123', '', '');
+INSERT INTO `User` (`firstName`, `lastName`, `email`, `userPassword`, `username`, `bio`, `pfp`) VALUES
+('james', 'jackson', 'james@gmail.com', '360james!', 'officialjames', '', '');
 
 -- Dumping data for table `Post`
 INSERT INTO `Post` (`postTitle`, `postContent`, `topic`, `userId`) VALUES
