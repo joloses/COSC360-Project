@@ -16,11 +16,10 @@
         $sql->bind_param("sssss", $postTitle, $postTopic, $postContent, $postDate, $userId);
 
         if ($sql->execute()) {
-            echo "Successfully added post!";
-            echo "<br><br><a href='/COSC360-Project/source_code/home.php'>Return to Home</a>";
+            header("Location: home.php");
         } else {
             echo "Unable to create post.";
-            echo "<br><br><a href='/COSC360-Project/source_code/home.php'>Return to Home</a>";
+            echo "<br><br><a href='home.php'>Return to Home</a>";
         }
 
         $sql->close();
