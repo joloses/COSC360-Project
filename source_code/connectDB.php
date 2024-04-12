@@ -10,7 +10,7 @@ $connection = mysqli_connect($host, $user, $password, $database);
 */
 
 // // CONNECT TO JOLO'S WEBSERVER DATABASE 
- // /*
+  // /*
   $host = "localhost";
   $database = "db_85456473";
   $user = "85456473";
