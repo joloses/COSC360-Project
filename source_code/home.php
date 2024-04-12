@@ -48,6 +48,9 @@ if (!$result_posts) {
             </form>
 
             <?php if (isset($_SESSION['email'])): ?>
+                <?php if ($_SESSION['role'] === 'admin'): ?>
+                    <a href="adminpage.php" class="admin-page-btn">Admin Page</a>
+                <?php endif; ?>
                 <a href="create-post.php" class="create-post-btn"><img src="images/createPost.png"></a>
                 <a href="user-profile.php" class="user-profile-btn"><img src="images/profile-icon.png"></a>
                 <a href="logout.php" class="logout-btn">Logout</a>
