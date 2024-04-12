@@ -1,5 +1,6 @@
 <?php
 session_start();
+require_once 'connectDB.php';
 
 if (empty($_SESSION["email"])) { // If user hard-codes link into URL
     header("Location: login.php");
@@ -7,6 +8,10 @@ if (empty($_SESSION["email"])) { // If user hard-codes link into URL
 
 $username = $_SESSION['username'];
 $email = $_SESSION['email'];
+$userId = $_SESSION['userId'];
+
+$sql_user_posts = "SELECT postId, postTitle FROM Post WHERE userId = '$userId'";
+$result_user_posts = mysqli_query($connection, $sql_user_posts);
 
 ?>
 
@@ -44,6 +49,24 @@ $email = $_SESSION['email'];
         <div class="profile-email"> Email: <?php echo $email; ?></div>
 
         <a href="edit-profile.php" class="edit-profile-btn">Edit Profile</a>
+    </div>
+
+    <div class="prevPosts">
+    <h4>Your Previous Posts</h4>
+        <?php
+            if ($result_user_posts && mysqli_num_rows($result_user_posts) > 0) {
+                // Iterate through user's posts and display them with a link
+                echo "<ul class='user-posts'>";
+                while ($row_user_post = mysqli_fetch_assoc($result_user_posts)) {
+                    echo "<li class='prev-post'><a href='postPage.php?postId=" . $row_user_post['postId'] . "'>" . $row_user_post['postTitle'] . "</a></li>";
+                }
+                echo "</ul>";
+            } else {
+                // If no posts are found, display a message
+                echo "<p class='no-posts'>No posts found.</p>";
+            }
+            
+        ?>
     </div>
 </body>
 
