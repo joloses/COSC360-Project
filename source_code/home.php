@@ -13,6 +13,11 @@ if (!$result_topics) {
 
 // Default query to fetch all posts
 $sql_posts = "SELECT `postId`, `postTitle`, `postContent`, `postDate`, `userId` FROM Post";
+
+// Check if sorting option is selected
+$sort = isset($_GET['sort']) && ($_GET['sort'] == 'asc' || $_GET['sort'] == 'desc') ? $_GET['sort'] : 'asc';
+$sql_posts .= " ORDER BY `postDate` $sort";
+
 $result_posts = mysqli_query($connection, $sql_posts);
 
 if (!$result_posts) {
@@ -35,6 +40,10 @@ if (!$result_posts) {
             <a href="home.php" class="logo"><img src="images/logo.png"></a>
             <form method="GET" action="" class="search-form">
                 <input type="text" class="search-bar" name="search" placeholder="Search..." value="<?php echo isset($_GET['search']) ? $_GET['search'] : '' ?>">
+                <select name="sort" class="sort-dropdown">
+                    <option value="asc">Date: Low to High</option>
+                    <option value="desc">Date: High to Low</option>
+                </select>
                 <button type="submit" class="submitBtn">Search</button>
             </form>
 
