@@ -53,6 +53,7 @@ $result_user_posts = mysqli_query($connection, $sql_user_posts);
             <h2>Create Post</h2>
             <!-- Form to create a new post (attached to logged in user)-->
             <form action="process-post.php" method="post">
+                <input type="hidden" name="userId" value="<?php echo $userId; ?>">
                 <div class="form-group">
                     <label for="post-title">Title:</label>
                     <input type="text" id="post-title" name="post-title" maxlength="100"
