@@ -22,11 +22,15 @@ $profile_picture = $row['pfp'];
 // If empty, show nothing (prevent undefined error)
 $bio = $row['bio'] ?? '';
 $profile_picture = $row['pfp'] ?? '';
+
+// Assuming $userId contains the ID of the logged-in user
+$sql_user_comments = "SELECT c.commentId, c.commentBody, c.postId, p.postTitle FROM Comments c JOIN Post p ON c.postId = p.postId WHERE c.userId = '$userId'";
+$result_user_comments = mysqli_query($connection, $sql_user_comments);
+
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -52,6 +56,7 @@ $profile_picture = $row['pfp'] ?? '';
         </nav>
     </header>
 
+    <!-- Profile Posts Container -->
     <div class="profile-container">
         <div class="profile-picture"><img src="<?php echo $profile_picture; ?>"></div>
         <div class="profile-username"> Username: <?php echo $username; ?></div>
@@ -61,15 +66,16 @@ $profile_picture = $row['pfp'] ?? '';
         <a href="edit-profile.php" class="edit-profile-btn">Edit Profile</a>
         <a href="change-password.php" class="change-pass-btn">Change Password</a>
     </div>
-
+    
+    <!-- Previous Posts Container -->
     <div class="prevPosts">
     <h4>Your Previous Posts</h4>
         <?php
             if ($result_user_posts && mysqli_num_rows($result_user_posts) > 0) {
                 // Iterate through user's posts and display them with a link
                 echo "<ul class='user-posts'>";
-                while ($row_user_post = mysqli_fetch_assoc($result_user_posts)) {
-                    echo "<li class='prev-post'><a href='postPage.php?postId=" . $row_user_post['postId'] . "'>" . $row_user_post['postTitle'] . "</a></li>";
+                while ($row_user_posts = mysqli_fetch_assoc($result_user_posts)) {
+                    echo "<li class='prev-post'><a href='postPage.php?postId=" . $row_user_posts['postId'] . "'>" . $row_user_posts['postTitle'] . "</a></li>";
                 }
                 echo "</ul>";
             } else {
@@ -79,6 +85,36 @@ $profile_picture = $row['pfp'] ?? '';
             
         ?>
     </div>
+
+    <!-- Comments Container -->
+    <div class="comments">
+    <h4>Your Previous Comments</h4>
+    <?php
+    // Assuming $result_user_comments contains the result of the query to fetch user's comments
+    if ($result_user_comments && mysqli_num_rows($result_user_comments) > 0) {
+        // Iterate through user's comments and display them with a link to the post
+        echo "<ul class='user-comments'>";
+        while ($row_user_comment = mysqli_fetch_assoc($result_user_comments)) {
+            // Fetch post information based on postId
+            $postId = $row_user_comment['postId'];
+            $sql_post_info = "SELECT `postTitle` FROM Post WHERE `postId` = $postId";
+            $result_post_info = mysqli_query($connection, $sql_post_info);
+            if ($result_post_info && mysqli_num_rows($result_post_info) > 0) {
+                $row_post_info = mysqli_fetch_assoc($result_post_info);
+                $postTitle = $row_post_info['postTitle'];
+            } else {
+                $postTitle = "Unknown Post";
+            }
+            echo "<li class='user-comment'><a id='commentLink' href='postPage.php?postId=$postId'>" . $postTitle . "</a> </br> " . $row_user_comment['commentBody'] . "</li>";
+        }
+        echo "</ul>";
+    } else {
+        // If no comments are found, display a message
+        echo "<p class='no-comments'>No previous comments found.</p>";
+    }
+    ?>
+</div>
+
 </body>
 
 </html>

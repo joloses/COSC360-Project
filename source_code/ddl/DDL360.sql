@@ -23,8 +23,7 @@ CREATE TABLE `User` (
     `userPassword` VARCHAR(255) NOT NULL,
     `username` VARCHAR(50) NOT NULL,
     `bio` VARCHAR(255),
-    `pfp` blob NOT NULL
-    `username` VARCHAR(50) NOT NULL,
+    `pfp` blob NOT NULL,
     `role` ENUM('user', 'admin') NOT NULL DEFAULT 'user' 
 );
 
