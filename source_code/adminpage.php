@@ -12,18 +12,23 @@ if (!(isset($_SESSION['role']) && $_SESSION['role'] === 'admin')) {
 $post_count = $comment_count = $user_count = 0;
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    if ($_POST["filter"] == "posts") {
-        $sql_posts_count = "SELECT COUNT(*) AS postCount FROM Post";
-        $result_posts_count = mysqli_query($connection, $sql_posts_count);
-        $post_count = mysqli_fetch_assoc($result_posts_count)['postCount'];
-    } elseif ($_POST["filter"] == "comments") {
-        $sql_comments_count = "SELECT COUNT(*) AS commentCount FROM Comments";
-        $result_comments_count = mysqli_query($connection, $sql_comments_count);
-        $comment_count = mysqli_fetch_assoc($result_comments_count)['commentCount'];
-    } elseif ($_POST["filter"] == "users") {
-        $sql_users_count = "SELECT COUNT(*) AS userCount FROM User";
-        $result_users_count = mysqli_query($connection, $sql_users_count);
-        $user_count = mysqli_fetch_assoc($result_users_count)['userCount'];
+    if (!isset($_POST["filter"])) {
+        header("Location: adminpage.php"); // Redirect to no selection
+        exit();
+    } else {
+        if ($_POST["filter"] == "posts") {
+            $sql_posts_count = "SELECT COUNT(*) AS postCount FROM Post";
+            $result_posts_count = mysqli_query($connection, $sql_posts_count);
+            $post_count = mysqli_fetch_assoc($result_posts_count)['postCount'];
+        } elseif ($_POST["filter"] == "comments") {
+            $sql_comments_count = "SELECT COUNT(*) AS commentCount FROM Comments";
+            $result_comments_count = mysqli_query($connection, $sql_comments_count);
+            $comment_count = mysqli_fetch_assoc($result_comments_count)['commentCount'];
+        } elseif ($_POST["filter"] == "users") {
+            $sql_users_count = "SELECT COUNT(*) AS userCount FROM User";
+            $result_users_count = mysqli_query($connection, $sql_users_count);
+            $user_count = mysqli_fetch_assoc($result_users_count)['userCount'];
+        }
     }
 }
 ?>
@@ -33,7 +38,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <head>
     <title>Admin Reports</title>
-    <link rel="stylesheet" href="css/home.css">
+    <link rel="stylesheet" href="css/header.css?v=<?php echo time(); ?>">
+    <link rel="stylesheet" href="css/adminPage.css?v=<?php echo time(); ?>">
 </head>
 
 <body>
@@ -46,6 +52,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </form>
 
             <?php if (isset($_SESSION['email'])): ?>
+                <?php if ($_SESSION['role'] === 'admin'): ?>
+                    <a href="adminpage.php" class="admin-page-btn">Admin Page</a>
+                <?php endif; ?>
                 <a href="create-post.php" class="create-post-btn"><img src="images/createPost.png"></a>
                 <a href="user-profile.php" class="user-profile-btn"><img src="images/profile-icon.png"></a>
                 <a href="logout.php" class="logout-btn">Logout</a>
@@ -58,6 +67,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     <div class="container">
         <h1>Admin Reports</h1>
+        <br>
         <form method="post">
             <label for="posts">Posts</label>
             <input type="radio" name="filter" id="posts" value="posts" <?php if (isset($_POST['filter']) && $_POST['filter'] == 'posts') echo 'checked'; ?>>
@@ -68,8 +78,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <button type="submit">Filter</button>
         </form>
         <div class="reports">
-            <?php if ($_SERVER["REQUEST_METHOD"] == "POST"): ?>
-                <?php if ($_POST["filter"] == "posts"): ?>
+        <?php if ($_SERVER["REQUEST_METHOD"] == "POST"): ?>
+                <?php if (!isset($_POST["filter"])): ?>
+                    <p>Please select a filter.</p>
+                <?php elseif ($_POST["filter"] == "posts"): ?>
                     <div class="report">
                         <h2>Posts</h2>
                         <p>Total Posts: <?php echo $post_count; ?></p>

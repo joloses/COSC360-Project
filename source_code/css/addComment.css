@@ -145,7 +145,7 @@
 
 #topicList,
 .other {
-    text-decoration: none;
+    text-decoration: none; 
     font-style: italic;
     color: darkslategray;
     list-style: none;

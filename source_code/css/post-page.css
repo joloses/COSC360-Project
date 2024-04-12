@@ -28,10 +28,11 @@
 
 .search-bar {
     padding: 10px;
-    width: 900px;
+    width: 700px;
     border: none;
     border-radius: 15px;
 }
+
 
 .main-content {
     flex: 2;
