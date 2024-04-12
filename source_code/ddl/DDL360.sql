@@ -47,9 +47,9 @@ CREATE TABLE `Comments` (
 );
 
 INSERT INTO `User` (`firstName`, `lastName`, `email`, `userPassword`, `username`, `bio`, `pfp`, `role` ) VALUES
-('bobby', 'brown', 'bobby@gmail.com', 'd97b5330ab04e7956d867eb4312b8509', 'bobby123', '', '','admin');
+('bobby', 'brown', 'bobby@gmail.com', 'bac6387160924ed014c3abc0f992535b', 'bobby123', '', '','admin');
 INSERT INTO `User` (`firstName`, `lastName`, `email`, `userPassword`, `username`, `bio`, `pfp`, `role`) VALUES
-('james', 'jackson', 'james@gmail.com', '2832889661389d61958a42f77ac5618b', 'officialjames', '', '','user');
+('james', 'jackson', 'james@gmail.com', '43703f7eecaa062f044ea8247b3f40b3', 'officialjames', '', '','user');
 
 INSERT INTO `Post` (`postTitle`, `postContent`, `postDate`, `topic`, `userId`) VALUES
 ('Bobby''s First Post', 'Hi, I''m Bobby, here is my first post', '2022-04-10','Introductions', 1);

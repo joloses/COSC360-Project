@@ -156,7 +156,7 @@ if (!$result_posts) {
             <ul>
                 <li class="other"><a href="about-us.php">About Us!</a></li>
                 <li class="other"><a href="contact.php">Contact</a></li>
-                <li class="other"><a href="TOS.php">Terms of Service</a></li>
+                <li class="other"><a href="tos.php">Terms of Service</a></li>
             </ul>
         </div>
     </div>

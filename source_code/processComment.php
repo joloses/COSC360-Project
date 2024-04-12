@@ -25,11 +25,11 @@ if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST["postId"]) && isset($_P
 
     if ($sql->execute()) { 
         //if successful, redirect to post page to see added comment
-        header("Location: /COSC360-Project/source_code/postPage.php?postId=" . $postId);
+        header("Location: postPage.php?postId=" . $postId);
         exit();
     } else {
         echo "Unable to create comment.";
-        echo "<br><br><a href='/COSC360-Project/source_code/postPage.php?postId=" . $postId . "'>Return to Post</a>";
+        echo "<br><br><a href='postPage.php?postId=" . $postId . "'>Return to Post</a>";
     }
 
     $sql->close();
