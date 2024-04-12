@@ -107,7 +107,7 @@ if(isset($_GET['search']) && !empty($_GET['search'])) {
     <header>
         <nav>
         <a href="home.php" class="logo"><img src="images/logo.png"></a>
-            <form method="GET" action="" class="search-form">
+            <form method="GET" action="home.php" class="search-form">
                 <input type="text" class="search-bar" name="search" placeholder="Search..." value="<?php echo isset($_GET['search']) ? $_GET['search'] : '' ?>">
                 <select name="sort" class="sort-dropdown">
                     <option value="asc">Date: Low to High</option>

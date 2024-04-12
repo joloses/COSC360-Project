@@ -27,6 +27,16 @@ $profile_picture = $row['pfp'] ?? '';
 $sql_user_comments = "SELECT c.commentId, c.commentBody, c.postId, p.postTitle FROM Comments c JOIN Post p ON c.postId = p.postId WHERE c.userId = '$userId'";
 $result_user_comments = mysqli_query($connection, $sql_user_comments);
 
+// Check if search query is provided
+if(isset($_GET['search']) && !empty($_GET['search'])) {
+    $search = mysqli_real_escape_string($connection, $_GET['search']);
+    $sql_search = "SELECT `postId`, `postTitle`, `postContent` FROM Post WHERE `postTitle` LIKE '%$search%' OR `topic` LIKE '%$search%'";
+    $result_posts = mysqli_query($connection, $sql_search);
+} else {
+    // Default query to get all posts for no search
+    $sql_posts = "SELECT `postId`, `postTitle`, `postContent` FROM Post";
+    $result_posts = mysqli_query($connection, $sql_posts);
+}
 ?>
 
 <!DOCTYPE html>
@@ -41,18 +51,23 @@ $result_user_comments = mysqli_query($connection, $sql_user_comments);
 
 <body>
     <header>
-        <nav>
-            <a href="home.php" class="logo"><img src="images/logo.png"></a>
-            <input type="text" class="search-bar" placeholder="Search...">
-
-            <?php if (isset($_SESSION['email'])): ?>
+    <nav>
+        <a href="home.php" class="logo"><img src="images/logo.png"></a>
+            <form method="GET" action="home.php" class="search-form">
+                <input type="text" class="search-bar" name="search" placeholder="Search..." value="<?php echo isset($_GET['search']) ? $_GET['search'] : '' ?>">
+                <select name="sort" class="sort-dropdown">
+                    <option value="asc">Date: Low to High</option>
+                    <option value="desc">Date: High to Low</option>
+                </select>
+                <button type="submit" class="submitBtn">Search</button>
+            </form>
+            <?php if (isset($_SESSION['email'])): ?> 
                 <a href="create-post.php" class="create-post-btn"><img src="images/createPost.png"></a>
                 <a href="user-profile.php" class="user-profile-btn"><img src="images/profile-icon.png"></a>
                 <a href="logout.php" class="logout-btn">Logout</a>
             <?php else: ?>
                 <a href="login.php" class="login-register-btn">Login/Register</a>
             <?php endif; ?>
-
         </nav>
     </header>
 
