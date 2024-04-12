@@ -47,16 +47,22 @@ CREATE TABLE `Comments` (
 );
 -- Dumping data for table `User`
 INSERT INTO `User` (`firstName`, `lastName`, `email`, `userPassword`, `username`, `bio`, `pfp`, `role` ) VALUES
-('bobby', 'brown', 'bobby@gmail.com', '360bobby!', 'bobby123', '', '','admin' );
+('Bobby', 'Brown', 'bobby@gmail.com', '360bobby!', 'bobby123', '', '','admin' );
 INSERT INTO `User` (`firstName`, `lastName`, `email`, `userPassword`, `username`, `bio`, `pfp`, `role`) VALUES
-('james', 'jackson', 'james@gmail.com', '360james!', 'officialjames', '', '','user' );
+('James', 'Jackson', 'james@gmail.com', '360james!', 'officialjames', '', '','user' );
+INSERT INTO `User` (`firstName`, `lastName`, `email`, `userPassword`, `username`, `bio`, `pfp`, `role`) VALUES
+('Leah', 'Smith', 'leah@gmail.com', '360leah!', 'LeahTalks', 'Hi! My name is Leah and I am a student!', '','user');
 
 
 -- Dumping data for table `Post`
 INSERT INTO `Post` (`postTitle`, `postContent`, `postDate`, `topic`, `userId`) VALUES
 ('Bobby''s First Post', 'Hi, I''m Bobby, here is my first post', '2022-04-10','Introductions', 1);
 INSERT INTO `Post` (`postTitle`, `postContent`, `postDate`, `topic`, `userId`) VALUES
-('First time in Kelowna!', 'I''m James and I''m new to UBCO! Anyone have any suggestions for things to do in Kelowna?', '2024-09-2','Kelowna', 2);
+('First time in Kelowna!', 'I''m James and I''m new to UBCO! Anyone have any suggestions for things to do in Kelowna?', '2023-09-2','Kelowna', 2);
+INSERT INTO `Post` (`postTitle`, `postContent`, `postDate`, `topic`, `userId`) VALUES
+('Kelowna Cafes!', 'Wondering if there''s any good cafes to study at in Kelowna!', '2024-04-3','Kelowna', 3);
+INSERT INTO `Post` (`postTitle`, `postContent`, `postDate`, `topic`, `userId`) VALUES
+('My First Post!', 'Just testing out this!', '2024-03-22','Kelowna', 3);
 
 
 

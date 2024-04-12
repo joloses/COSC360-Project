@@ -72,6 +72,23 @@ nav {
     padding: 0px 20px;
   }
 
+
+.login-register-btn {
+  background-color: #627594;
+  padding: 6px 8px 6px 8px;
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+  margin: 2px;
+  border-radius: 10px;
+  box-shadow: none;
+  font-size: 16px;
+}
+
+.login-register-btn:hover {
+  background-color: #2f3d59;
+}
+
 .profile-btn { /* logo credit: https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.vecteezy.com%2Fvector-art%2F8302462-eps10-grey-vector-user-icon-or-logo-in-simple-flat-trendy-modern-style-isolated-on-white-background&psig=AOvVaw3pgjXonlxadLb9Pu4dLWz4&ust=1707728564459000&source=images&cd=vfe&opi=89978449&ved=0CBMQjRxqFwoTCIivzuX2ooQDFQAAAAAdAAAAABAE*/
     width: 20px;
     height: 20px;
