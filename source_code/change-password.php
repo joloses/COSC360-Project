@@ -11,7 +11,7 @@ $email = $_SESSION['email'];
 
 if ($_SERVER["REQUEST_METHOD"] != "POST") {
     $_SESSION['error_current_password'] = '';
-    $_SESSION['error_new_password'] = '';
+    $_SESSION['error_password_requirement'] = '';
 }
 
 // Handle form submission
@@ -27,8 +27,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $result = $stmt->get_result();
     $user = $result->fetch_assoc();
 
+    // Check if password matches requirements
+    $uppercase = preg_match('@[A-Z]@', $new_password);
+    $number = preg_match('@[0-9]@', $new_password);
+    $symbol = preg_match('@[^\w]@', $new_password);
+
     if ($current_password !== $user['userPassword']) {
         $_SESSION['error_current_password'] = "Current password is incorrect.";
+    } else if (strlen($password) < 6 || strlen($password) > 15 || !$uppercase || !$number || !$symbol) {
+        $_SESSION['error_password_requirement'] = "Password must be between 6 and 15 characters long and contain at least one uppercase letter, one number, and one symbol.";
     } else {
         $new_hashed_password = md5($new_password);
         $update_stmt = $connection->prepare("UPDATE User SET userPassword = ? WHERE email = ?");
@@ -37,6 +44,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         // Clear error message
         $_SESSION['error_current_password'] = '';
+        $_SESSION['error_password_requirement'] = '';
         header("Location: user-profile.php");
         exit;
     }
@@ -80,6 +88,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 echo "<p style='color:red'>" . $_SESSION['error_current_password'] . "</p>"; ?>
 
             <input type="password" class="input-field" name="new_password" id="new_password" placeholder="New Password">
+            <?php if (!empty($_SESSION['error_password_requirement']))
+                echo "<p style='color:red'>" . $_SESSION['error_password_requirement'] . "</p>"; ?>
             <input type="password" class="input-field" name="confirm_password" id="new_pass-check"
                 placeholder="Confirm New Password">
             <button type="submit" class="edit-profile-btn">Save Changes</button>
