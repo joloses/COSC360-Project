@@ -14,10 +14,17 @@ body {
 .profile-picture {
     width: 150px;
     height: 150px;
-    border-radius: 50%; /* Circle pfp */
-    margin: 0 auto 20px;
-    background-color: #ccc;
-}
+    border-radius: 50%;
+    margin: 0 auto 20px; 
+    background-color: #ccc; 
+    overflow: hidden; 
+  }
+
+  .profile-picture img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+  }
 
 .profile-username {
     font-size: 24px;
@@ -36,8 +43,8 @@ body {
     margin-bottom: 20px;
 }
 
-.edit-profile-btn {
-    margin: 3px;
+.edit-profile-btn, .change-pass-btn {
+    margin-top: 10px;
     background-color: #007bff;
     color: #fff;
     border: none;

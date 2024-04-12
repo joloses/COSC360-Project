@@ -21,7 +21,11 @@ CREATE TABLE `User` (
     `lastName` VARCHAR(255) NOT NULL,
     `email` VARCHAR(255) NOT NULL,
     `userPassword` VARCHAR(255) NOT NULL,
-    `username` VARCHAR(50) NOT NULL
+    `username` VARCHAR(50) NOT NULL,
+    `bio` VARCHAR(255),
+    `pfp` blob NOT NULL
+    `username` VARCHAR(50) NOT NULL,
+    `role` ENUM('user', 'admin') NOT NULL DEFAULT 'user' 
 );
 
 CREATE TABLE `Post` (
@@ -43,10 +47,11 @@ CREATE TABLE `Comments` (
     FOREIGN KEY(`userId`) REFERENCES `User`(`UserId`)
 );
 -- Dumping data for table `User`
-INSERT INTO `User` (`firstName`, `lastName`, `email`, `userPassword`) VALUES
-('bobby', 'brown', 'bobby@gmail.com', '360bobby!');
-INSERT INTO `User` (`firstName`, `lastName`, `email`, `userPassword`) VALUES
-('james', 'jackson', 'james@gmail.com', '360james!');
+INSERT INTO `User` (`firstName`, `lastName`, `email`, `userPassword`, `username`, `bio`, `pfp`, `role` ) VALUES
+('bobby', 'brown', 'bobby@gmail.com', '360bobby!', 'bobby123', '', '','admin' );
+INSERT INTO `User` (`firstName`, `lastName`, `email`, `userPassword`, `username`, `bio`, `pfp`, `role`) VALUES
+('james', 'jackson', 'james@gmail.com', '360james!', 'officialjames', '', '','user' );
+
 
 -- Dumping data for table `Post`
 INSERT INTO `Post` (`postTitle`, `postContent`, `postDate`, `topic`, `userId`) VALUES

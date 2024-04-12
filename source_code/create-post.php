@@ -2,7 +2,6 @@
 session_start();
 require_once 'connectDB.php';
 
-
 if (empty($_SESSION["email"])) { // If user hard-codes link into URL
     header("Location: login.php");
 }
@@ -13,7 +12,6 @@ $email = $_SESSION['email'];
 
 $sql_user_posts = "SELECT postId, postTitle FROM Post WHERE userId = '$userId'";
 $result_user_posts = mysqli_query($connection, $sql_user_posts);
-
 
 ?>
 
