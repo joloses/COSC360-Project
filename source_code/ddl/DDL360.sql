@@ -23,8 +23,7 @@ CREATE TABLE `User` (
     `userPassword` VARCHAR(255) NOT NULL,
     `username` VARCHAR(50) NOT NULL,
     `bio` VARCHAR(255),
-    `pfp` blob NOT NULL
-    `username` VARCHAR(50) NOT NULL,
+    `pfp` blob NOT NULL,
     `role` ENUM('user', 'admin') NOT NULL DEFAULT 'user' 
 );
 
@@ -44,20 +43,18 @@ CREATE TABLE `Comments` (
     `postId` INT,
     `userId` INT,
     FOREIGN KEY(`postId`) REFERENCES `Post`(`postId`),
-    FOREIGN KEY(`userId`) REFERENCES `User`(`UserId`)
+    FOREIGN KEY(`userId`) REFERENCES `User`(`userId`)
 );
--- Dumping data for table `User`
+
 INSERT INTO `User` (`firstName`, `lastName`, `email`, `userPassword`, `username`, `bio`, `pfp`, `role` ) VALUES
-('bobby', 'brown', 'bobby@gmail.com', '360bobby!', 'bobby123', '', '','admin' );
+('bobby', 'brown', 'bobby@gmail.com', 'd97b5330ab04e7956d867eb4312b8509', 'bobby123', '', '','admin');
 INSERT INTO `User` (`firstName`, `lastName`, `email`, `userPassword`, `username`, `bio`, `pfp`, `role`) VALUES
-('james', 'jackson', 'james@gmail.com', '360james!', 'officialjames', '', '','user' );
+('james', 'jackson', 'james@gmail.com', '2832889661389d61958a42f77ac5618b', 'officialjames', '', '','user');
 
-
--- Dumping data for table `Post`
 INSERT INTO `Post` (`postTitle`, `postContent`, `postDate`, `topic`, `userId`) VALUES
 ('Bobby''s First Post', 'Hi, I''m Bobby, here is my first post', '2022-04-10','Introductions', 1);
 INSERT INTO `Post` (`postTitle`, `postContent`, `postDate`, `topic`, `userId`) VALUES
-('First time in Kelowna!', 'I''m James and I''m new to UBCO! Anyone have any suggestions for things to do in Kelowna?', '2024-09-2','Kelowna', 2);
+('First time in Kelowna!', 'I''m James and I''m new to UBCO! Anyone have any suggestions for things to do in Kelowna?', '2024-09-02','Kelowna', 2);
 
 
 

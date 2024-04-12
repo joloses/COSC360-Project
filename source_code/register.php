@@ -28,6 +28,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $errors[] = "Passwords do not match.";
     }
 
+    // Hash the password after validation
+    $passwordValid = md5($password);
+
     $sql = "SELECT * FROM User WHERE email='$email' OR username='$username'";
     $result = $connection->query($sql);
     if ($result->num_rows > 0) {
@@ -35,7 +38,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     if (empty($errors)) {
-        $sql = "INSERT INTO User (firstName, lastName, email, userPassword, username) VALUES ('$firstName', '$lastName', '$email', '$password', '$username')";
+        $sql = "INSERT INTO User (firstName, lastName, email, userPassword, username) VALUES ('$firstName', '$lastName', '$email', '$passwordValid', '$username')";
 
         if ($connection->query($sql) === TRUE) {
             header("Location: login.php");

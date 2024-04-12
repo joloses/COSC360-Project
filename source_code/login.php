@@ -4,7 +4,7 @@ require_once 'connectDB.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST['login-email'];
-    $password = $_POST['login-password'];
+    $password = md5($_POST['login-password']);
 
     $sql = "SELECT * FROM User WHERE email='$email' AND userPassword='$password'";
     $result = $connection->query($sql);

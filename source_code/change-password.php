@@ -16,7 +16,7 @@ if ($_SERVER["REQUEST_METHOD"] != "POST") {
 
 // Handle form submission
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $current_password = ($_POST['current_password']);
+    $current_password = md5($_POST['current_password']);
     $new_password = $_POST['new_password'];
     $confirm_password = $_POST['confirm_password'];
 
@@ -30,7 +30,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($current_password !== $user['userPassword']) {
         $_SESSION['error_current_password'] = "Current password is incorrect.";
     } else {
-        $new_hashed_password = ($new_password);
+        $new_hashed_password = md5($new_password);
         $update_stmt = $connection->prepare("UPDATE User SET userPassword = ? WHERE email = ?");
         $update_stmt->bind_param("ss", $new_hashed_password, $email);
         $update_stmt->execute();
