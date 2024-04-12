@@ -8,32 +8,6 @@
     margin-left: 30px;
 }
 
-.login-register-btn,
-.logout-btn {
-    background-color: #627594;
-    padding: 6px 8px 6px 8px;
-    text-decoration: none;
-    color: white;
-    font-weight: bold;
-    margin: 2px;
-    border-radius: 10px;
-    box-shadow: none;
-    font-size: 16px;
-}
-
-.login-register-btn:hover,
-.logout-btn:hover {
-    background-color: #2f3d59;
-}
-
-.search-bar {
-    padding: 10px;
-    width: 700px;
-    border: none;
-    border-radius: 15px;
-}
-
-
 .main-content {
     flex: 2;
     /* Takes up 66% of the width */
@@ -54,48 +28,10 @@
 }
 
 .post {
-    color: #555c6d;
+    color: #555c6d; 
 }
 
-/* Dropdown select */
-.sort-dropdown {
-    padding: 8px;
-    border: none;
-    border-radius: 15px;
-    background-color: #fff;
-    color: #555c6d;
-    font-size: 16px;
-    margin-right: 10px;
-}
-
-.sort-dropdown:hover,
-.sort-dropdown:focus {
-    outline: none;
-    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
-}
-
-/* Dropdown arrow */
-.sort-dropdown::after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    right: 15px;
-    transform: translateY(-50%);
-    border: solid #627594;
-    border-width: 0 2px 2px 0;
-    padding: 3px;
-    pointer-events: none;
-    transition: all 0.3s ease;
-}
-
-/* Dropdown arrow animation on hover */
-.sort-dropdown:hover::after {
-    transform: translateY(-50%) rotate(-135deg);
-}
-
-
-.submitBtn,
-#addCommentLink {
+.submitBtn {
     background-color: #627594;
     padding: 4px 8px 4px 8px;
     text-decoration: none;
@@ -106,8 +42,37 @@
     box-shadow: none;
 }
 
-.submitBtn:hover,
-#addCommentLink:hover {
+.submitBtn:hover {
+    background-color: #2f3d59;
+}
+
+.commentBox {
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    padding: 20px;
+    margin-top: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.commentBox textarea {
+    width: 100%;
+    padding: 12px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: vertical;
+}
+
+.commentBox button {
+    background-color: #627594;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+}
+
+.commentBox button:hover {
     background-color: #2f3d59;
 }
 
@@ -118,6 +83,7 @@
 #commentBreaks {
     border-top: 0.1px solid rgb(207, 209, 212);
 }
+
 
 .commentList {
     margin-bottom: 10px;
@@ -143,7 +109,6 @@
 }
 
 /* Second column */
-
 .container-2 {
     display: flex;
     float: right;
@@ -180,7 +145,7 @@
 
 #topicList,
 .other {
-    text-decoration: none;
+    text-decoration: none; 
     font-style: italic;
     color: darkslategray;
     list-style: none;

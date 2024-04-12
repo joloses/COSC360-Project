@@ -72,3 +72,22 @@ header {
 .exit-btn:hover {
     background-color: #6e6e6e;
 }
+
+
+.login-register-btn,
+.logout-btn {
+    background-color: #627594;
+    padding: 6px 8px 6px 8px;
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    margin: 2px;
+    border-radius: 10px;
+    box-shadow: none;
+    font-size: 16px;
+}
+
+.login-register-btn:hover,
+.logout-btn:hover {
+    background-color: #2f3d59;
+}

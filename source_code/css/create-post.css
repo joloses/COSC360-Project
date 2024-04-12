@@ -52,3 +52,28 @@ button[type="submit"] {
 button[type="submit"]:hover {
     background-color: #0056b3;
 }
+
+/* CSS styles */
+.user-posts {
+    list-style-type: none;
+    padding: 0;
+}
+
+.prev-post {
+    margin-bottom: 10px;
+}
+
+.prev-post a {
+    text-decoration: none;
+    color: #627594;
+    font-style: italic;
+}
+
+.prev-post a:hover {
+    color: rgb(47, 72, 110);
+}
+
+.no-posts {
+    font-style: italic;
+    color: #999;
+}

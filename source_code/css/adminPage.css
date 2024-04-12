@@ -1,0 +1,53 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    border-radius: 15px;
+    background-color: white;
+    color: darkslategray;
+    width: 70%;
+    margin-left: 30px;
+    padding: 20px;
+}
+
+.container h1 {
+    margin-bottom: 20px;
+}
+
+.container form {
+    margin-bottom: 20px;
+}
+
+.container form div {
+    margin-bottom: 10px;
+}
+
+.container form div h2 {
+    margin-bottom: 5px;
+}
+
+.container form div input[type="radio"] {
+    margin-right: 5px;
+}
+
+.container form button {
+    background-color: #627594;
+    padding: 6px 12px;
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.container form button:hover {
+    background-color: #2f3d59;
+}
+
+.reports {
+    /* Style for reports section */
+}
+
+.report {
+    /* Style for individual report */
+}

@@ -37,3 +37,38 @@ nav {
     height: 50px;
     display: flex;
 }
+
+.login-register-btn,
+.logout-btn, .admin-page-btn {
+  background-color: #627594;
+  padding: 6px 8px 6px 8px;
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+  margin: 2px;
+  border-radius: 10px;
+  box-shadow: none;
+  font-size: 16px;
+}
+
+.login-register-btn:hover,
+.logout-btn:hover, .admin-page-btn:hover {
+  background-color: #2f3d59;
+}
+
+
+.submitBtn {
+  background-color: #627594;
+  padding: 4px 8px 4px 8px;
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+  margin: 2px;
+  border-radius: 10px;
+  box-shadow: none;
+  font-size: 16px;
+}
+
+.submitBtn:hover {
+  background-color: #2f3d59;
+}

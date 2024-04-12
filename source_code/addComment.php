@@ -1,3 +1,4 @@
+<!-- Identical to postPage.php with addition of a form to add a comment-->
 <?php
 session_start();
 require_once 'connectDB.php';
@@ -41,9 +42,8 @@ if(isset($_GET['postId'])) {
     $sql_comments = "SELECT * FROM Comments WHERE postId = $postId";
     $result_comments = mysqli_query($connection, $sql_comments);
 
-    if ($result_comments && mysqli_num_rows($result_comments) > 0) { 
+    if ($result_comments && mysqli_num_rows($result_comments) > 0) {
         while ($row_comment = mysqli_fetch_assoc($result_comments)) {
-            //sql to retrieve the commenter's name
             $currCommentUserId = $row_comment['userId'];
             $sql_commPoster = "SELECT `firstName`, `lastName` FROM User WHERE userId = $currCommentUserId";
             $result_commPoster = mysqli_query($connection, $sql_commPoster);
@@ -56,14 +56,14 @@ if(isset($_GET['postId'])) {
             }
     
             $commentBody = $row_comment['commentBody'];
-            if (!empty($commentBody)) { //skip comment if it's empty - avoid displaying blank lines
+            if (!empty($commentBody)) {
                 // Store each comment along with its commenter's name in an array
                 $comments[] = ['comment' => $commentBody, 'commenterName' => $commenterName];
             }
         }
     }
     
-
+    
 
     // Get poster's name to display with post
     if ($userId) {
@@ -77,6 +77,7 @@ if(isset($_GET['postId'])) {
             $posterName = "Unknown";
         }
     }
+
 
 } else { //error
     $postTitle = "No postId specified";
@@ -101,24 +102,17 @@ if(isset($_GET['search']) && !empty($_GET['search'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>View Post</title>
     <link rel="stylesheet" href="css/header.css?v=<?php echo time(); ?>">
-    <link rel="stylesheet" href="css/post-page.css?v=<?php echo time(); ?>">
+    <link rel="stylesheet" href="css/addComment.css?v=<?php echo time(); ?>">
 </head>
 <body>
     <header>
         <nav>
-        <a href="home.php" class="logo"><img src="images/logo.png"></a>
+            <a href="home.php" class="logo"><img src="images/logo.png"></a>
             <form method="GET" action="home.php" class="search-form">
                 <input type="text" class="search-bar" name="search" placeholder="Search..." value="<?php echo isset($_GET['search']) ? $_GET['search'] : '' ?>">
-                <select name="sort" class="sort-dropdown">
-                    <option value="asc">Date: Low to High</option>
-                    <option value="desc">Date: High to Low</option>
-                </select>
                 <button type="submit" class="submitBtn">Search</button>
             </form>
-            <?php if (isset($_SESSION['email'])): ?> 
-                <?php if ($_SESSION['role'] === 'admin'): ?>
-                    <a href="adminpage.php" class="admin-page-btn">Admin Page</a>
-                <?php endif; ?>
+            <?php if (isset($_SESSION['email'])): ?>
                 <a href="create-post.php" class="create-post-btn"><img src="images/createPost.png"></a>
                 <a href="user-profile.php" class="user-profile-btn"><img src="images/profile-icon.png"></a>
                 <a href="logout.php" class="logout-btn">Logout</a>
@@ -129,7 +123,7 @@ if(isset($_GET['search']) && !empty($_GET['search'])) {
     </header>
     <div class="container">
         <div class="main-content">
-        <h2 class="post"><?php echo $postTitle; ?></h2>
+        <h2 id="post"><?php echo $postTitle; ?></h2>
         <!-- Display post's author -->
         <div style="display: flex; align-items: center;">
             <img src="images/profile-icon.png" width="15px" height="15px">
@@ -141,12 +135,19 @@ if(isset($_GET['search']) && !empty($_GET['search'])) {
             <hr>
             <div class="comments">
                 <h3>Comments</h3>
-                <?php if (isset($_SESSION['email'])): ?> <!-- If user is logged in, they can comment-->
-                        <a id="addCommentLink" href="addComment.php?postId=<?php echo $postId; ?>#comments" class="commentBtn">Add Comment</a>
-                <?php endif; ?>
+                <!-- If add comment is clicked on postPage.php, the form pops up-->
+                <div class="commentBox">
+                        <form id="addCommentForm"action="processComment.php" method="POST">
+                            <input type="hidden" name="postId" value="<?php echo $postId; ?>">
+                            <input type="hidden" name="userId" value="<?php echo $userId; ?>">
+                            <label for="comment">Add Comment</label><br>
+                            <textarea id="comment" name="comment" rows="4" cols="50"></textarea><br>
+                            <button type="submit">Submit</button>
+                    </form>
+                    </div>
                 <?php if (!empty($comments)): ?>
-                    <!-- Display each comment if any exist -->
-                    <?php foreach ($comments as $comment): ?>
+                   <!-- Display each comment if any exist -->
+                   <?php foreach ($comments as $comment): ?>
                         <div class="commentList">
                             <div style="display: flex; align-items: center;">
                                 <img src="images/profile-icon.png" width="15px" height="15px">
